@@ -1,0 +1,39 @@
+.custom-dot {
+    position: static !important;
+    margin: 30px;
+    margin-bottom: 30px !important;
+
+    li {
+        background: @bg-gray-color;
+        width: 13px !important;
+        height: 13px !important;
+        border-radius: 50% !important;
+
+        button {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 50% !important;
+
+            &:hover {
+                background: @primary-color;
+            }
+        }
+    }
+
+    .slick-active {
+        background: @primary-color !important;
+
+        border-radius: 50% !important;
+
+
+        button {
+            background: inherit !important;
+            transition: none !important;
+            border-radius: 50% !important;
+            width: 100% !important;
+            height: 100% !important;
+
+
+        }
+    }
+}
