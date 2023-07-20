@@ -6,7 +6,7 @@ const CommonTextField = ({
   children,
   font,
   fontSize,
-  color = "#ffffff",
+  color,
   mb = 0,
   mt = 0,
   onClick,
