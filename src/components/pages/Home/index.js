@@ -4,6 +4,8 @@ import SelectFilters from "./SelectFilters";
 import { Col, Row } from "antd";
 import CommonCard from "components/common/Card";
 import { CARD_LIST } from "constant";
+import Table from "./Table";
+import CommonTable from "./Table";
 
 const Home = () => {
   return (
@@ -40,6 +42,7 @@ const Home = () => {
           </Col>
         ))}
       </Row>
+      <CommonTable />
     </>
   );
 };
