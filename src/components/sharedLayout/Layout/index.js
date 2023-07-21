@@ -2,120 +2,13 @@ import React from "react";
 import Sidebar from "../Sidebar";
 import Header from "../Header";
 
-const Layout = () => {
+const Layout = ({ children }) => {
   return (
     <div className="main-layout">
       <Header />
       <Sidebar />
 
-      <div className="content">
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>asdsadasdsa</p>
-        <p>hello</p>
-      </div>
+      <div className="content">{children}</div>
     </div>
   );
 };

@@ -6,6 +6,16 @@
   .sidebar-list-item {
     width: 100%;
     padding: 10px 20px;
+
+    &:hover {
+      background: @light-grey;
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+      p {
+        color: @light-blue;
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+    }
   }
   .active {
     background-color: @light-grey;
@@ -14,5 +24,9 @@
     p {
       color: @light-blue;
     }
+  }
+
+  @media @md {
+    display: none;
   }
 }

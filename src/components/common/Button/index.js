@@ -15,6 +15,7 @@ const CommonButton = ({
   htmlType,
   disabled,
   type = "primary",
+  text,
 }) => {
   return (
     <div className={`button-parent ${topClass || ""} `}>
@@ -33,7 +34,7 @@ const CommonButton = ({
         htmlType={htmlType}
         disabled={disabled}
       >
-        {child}
+        {child || text}
       </Button>
     </div>
   );

@@ -19,20 +19,26 @@ const CommonSelect = ({
   defaultValue,
   placeholder,
 }) => {
+  const { Option } = Select;
+
   return (
     <div className={`select-parent ${className || ""}`}>
       <Select
         placeholder={placeholder}
         defaultValue={defaultValue}
-        options={options}
-        width={width}
-        style={{ height, background }}
+        style={{ height, background, width }}
         type={type}
         name={name}
         onChange={onChange}
         onBlur={onBlur}
         value={value}
-      />
+      >
+        {options.map((option) => (
+          <Option key={option.value} value={option.value}>
+            {option.icon} {option.label}
+          </Option>
+        ))}
+      </Select>
       {errors && touch && (
         <p
           style={{
