@@ -1,3 +1,5 @@
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Row, Table } from "antd";
 import CommonInputField from "components/common/Input";
 import React from "react";
@@ -353,7 +355,9 @@ const columns = array.map((d) => {
 const CommonTable = () => {
   return (
     <div className="mt-5 table-parent p-5">
-      <div className="mb-3"></div>
+      <div className="mb-3">
+        <CommonInputField suffix={<FontAwesomeIcon icon={faSearch} />} />
+      </div>
       <Table dataSource={dataSource} columns={columns} />;
     </div>
   );

@@ -17,6 +17,7 @@ const CommonInputField = ({
   errors,
   touch,
   height,
+  suffix,
 }) => {
   return (
     <div>
@@ -32,7 +33,7 @@ const CommonInputField = ({
         onChange={onChange}
         onBlur={onBlur}
         value={value}
-        suffix
+        suffix={suffix}
       />
       {errors && touch && (
         <p
