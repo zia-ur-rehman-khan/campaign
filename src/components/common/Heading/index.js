@@ -3,11 +3,11 @@ import React from "react";
 const { Title } = Typography;
 
 const CommonHeading = ({
-  heading,
+  text,
   children,
   font,
   fontSize,
-  color = "#ffffff",
+  color,
   mb = 0,
   mt = 0,
   onClick,
@@ -46,7 +46,7 @@ const CommonHeading = ({
       }}
       onClick={onClick}
     >
-      {heading || children}
+      {text || children}
     </Title>
   );
 };
