@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { Input } from "antd";
+import { prefix } from "@fortawesome/free-regular-svg-icons";
 
 const CommonInputField = ({
   placeholder,
@@ -18,6 +19,7 @@ const CommonInputField = ({
   touch,
   height,
   suffix,
+  prefix,
 }) => {
   return (
     <div>
@@ -28,11 +30,12 @@ const CommonInputField = ({
         addonBefore={addonBefore}
         showCount={showCount}
         maxLength={maxLength}
-        className={`ad-input  ${className || ""}`}
+        className={`common-input  ${className || ""}`}
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
         value={value}
+        prefix={prefix}
         suffix={suffix}
       />
       {errors && touch && (

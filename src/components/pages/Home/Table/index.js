@@ -356,7 +356,10 @@ const CommonTable = () => {
   return (
     <div className="mt-5 table-parent p-5">
       <div className="mb-3">
-        <CommonInputField suffix={<FontAwesomeIcon icon={faSearch} />} />
+        <CommonInputField
+          prefix={<FontAwesomeIcon icon={faSearch} />}
+          placeholder={"Search..."}
+        />
       </div>
       <Table dataSource={dataSource} columns={columns} />;
     </div>
