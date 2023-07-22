@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import DateFilters from "./DateFilters";
-import SelectFilters from "./SelectFilters";
 import { Col, Row } from "antd";
+import React from "react";
+import SelectFilters from "../SelectFilters";
+import DateFilters from "../DateFilters";
 import CommonCard from "components/common/Card";
+import CommonTable from "../CampaignTable";
+import CommonTextField from "components/common/TextField";
 import { CARD_LIST } from "constant";
-import Table from "./CampaignTable";
-import CommonTable from "./CampaignTable";
-import CampaignTable from "./CampaignTable";
+import CommonHeading from "components/common/Heading";
+import CampaignTable from "../CampaignTable";
 
-const Home = () => {
+const CampaignDetail = ({ data }) => {
   return (
     <>
       <Row gutter={[0, 20]}>
@@ -18,7 +19,7 @@ const Home = () => {
           sm={{ span: 24 }}
           xs={{ span: 24 }}
         >
-          <SelectFilters />
+          <CommonHeading level={4} text={data?.campaign} />
         </Col>
         <Col
           lg={{ span: 12 }}
@@ -39,15 +40,15 @@ const Home = () => {
             xs={{ span: 24 }}
             key={Math.random()}
           >
-            <CommonCard data={data} show={true} />
+            <CommonCard data={data} />
           </Col>
         ))}
       </Row>
-      <div className="mt-5 table-parent p-5">
-        <CampaignTable show={true} />
+      <div className="mt-4">
+        <CampaignTable />
       </div>
     </>
   );
 };
 
-export default Home;
+export default CampaignDetail;

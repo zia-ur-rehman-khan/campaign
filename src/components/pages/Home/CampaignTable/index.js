@@ -1,9 +1,12 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Space } from "antd";
+import { Modal } from "antd";
 import { Col, Row, Table } from "antd";
 import CommonInputField from "components/common/Input";
-import React from "react";
+import CommomTable from "components/common/Table";
+import React, { useState } from "react";
+import CampaignDetail from "../CampaignDetail";
 
 const array = [
   "campaign",
@@ -350,7 +353,6 @@ const columns = array.map((d) => {
     };
   } else if (d === "campaign") {
     data.render = (id, { profit }) => {
-      console.log(id, profit, "profit");
       let color;
       if (5 < profit && profit < 6) {
         color = "background-red";
@@ -375,18 +377,42 @@ const columns = array.map((d) => {
   return data;
 });
 
-const CommonTable = () => {
+const CampaignTable = ({ show }) => {
+  const [isModalOpen, setIsModalOpen] = useState({ visible: false, data: {} });
+
+  const handleCancel = () => {
+    setIsModalOpen({ visible: false, data: {} });
+  };
+
+  const handleRowClick = (data) => {
+    setIsModalOpen({ visible: true, data: data });
+  };
+
   return (
-    <div className="mt-5 table-parent p-5">
+    <div>
       <div className="mb-3">
         <CommonInputField
           prefix={<FontAwesomeIcon icon={faSearch} />}
           placeholder={"Search..."}
         />
       </div>
-      <Table dataSource={dataSource} columns={columns} />
+      <CommomTable
+        dataSource={dataSource}
+        columns={columns}
+        onRow={(record) => ({
+          onClick: () => show && handleRowClick(record),
+        })}
+      />
+      <Modal
+        title=" "
+        open={isModalOpen.visible}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        <CampaignDetail data={isModalOpen.data} />
+      </Modal>
     </div>
   );
 };
 
-export default CommonTable;
+export default CampaignTable;
