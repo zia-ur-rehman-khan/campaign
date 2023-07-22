@@ -5,4 +5,24 @@
   top: 0;
   background: white;
   z-index: 1;
+
+  .burger {
+    display: none;
+  }
+
+  @media @md {
+    .logo {
+      display: none;
+    }
+    .burger {
+      display: block;
+    }
+  }
+}
+
+.ant-drawer-content-wrapper {
+  width: 200px !important;
+  .ant-drawer-body {
+    padding: 0;
+  }
 }

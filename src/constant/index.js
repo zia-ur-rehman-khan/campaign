@@ -19,15 +19,15 @@ export const options = [
 export const socialOptions = [
   {
     value: "Facebook",
-    label: "Jack",
+    label: "Facebook",
   },
   {
     value: "Insta",
-    label: "Lucy",
+    label: "Insta",
   },
   {
     value: "Youtube",
-    label: "yiminghe",
+    label: "Youtube",
   },
 ];
 

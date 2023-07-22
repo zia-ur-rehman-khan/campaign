@@ -59,7 +59,7 @@ const Sidebar = () => {
               pathname === t.route ? "active" : ""
             }`}
             key={i}
-            onClick={() => changeRoute(t?.route)}
+            // onClick={() => changeRoute(t?.route)}
           >
             {t.src}
             <CommonTextField text={t.title} />
