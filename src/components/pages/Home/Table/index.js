@@ -1,5 +1,6 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Space } from "antd";
 import { Col, Row, Table } from "antd";
 import CommonInputField from "components/common/Input";
 import React from "react";
@@ -347,6 +348,28 @@ const columns = array.map((d) => {
         return <span className={color}>{`$${profit}`}</span>;
       }
     };
+  } else if (d === "campaign") {
+    data.render = (id, { profit }) => {
+      console.log(id, profit, "profit");
+      let color;
+      if (5 < profit && profit < 6) {
+        color = "background-red";
+        return (
+          <Space>
+            <div className={`round ${color}`}></div>
+            {id}
+          </Space>
+        );
+      } else {
+        color = "background-green";
+        return (
+          <Space>
+            <div className={`round ${color}`}></div>
+            {id}
+          </Space>
+        );
+      }
+    };
   }
 
   return data;
@@ -361,7 +384,7 @@ const CommonTable = () => {
           placeholder={"Search..."}
         />
       </div>
-      <Table dataSource={dataSource} columns={columns} />;
+      <Table dataSource={dataSource} columns={columns} />
     </div>
   );
 };
