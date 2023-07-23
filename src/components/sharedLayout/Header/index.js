@@ -6,6 +6,8 @@ import { Drawer } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Sidebar from "../Sidebar";
+import Image from "next/image";
+import logo from "../../../../public/logo.jpg";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -20,12 +22,13 @@ const Header = () => {
 
   return (
     <div className="header d-flex w-100 justify-content-between align-items-center">
-      <CommonTextField
-        text={"Lorem Ipsum"}
-        topClass={"logo"}
-        fontWeight={"600"}
-      />
+      <div className="logo">
+        <Image src={logo} alt="logo" width={45} height={36} />
+      </div>
       <FontAwesomeIcon className="burger" icon={faBars} onClick={showDrawer} />
+      <div className="burger">
+        <Image src={logo} alt="logo" width={45} height={36} />
+      </div>
       <Avatar
         style={{
           backgroundColor: "#00a2ae",
@@ -36,7 +39,7 @@ const Header = () => {
       </Avatar>
 
       <Drawer
-        title={<CommonTextField text={"Lorem Ipsum"} fontWeight={"600"} />}
+        title={<Image src={logo} alt="logo" width={45} height={36} />}
         onClose={onClose}
         open={open}
         placement={"left"}

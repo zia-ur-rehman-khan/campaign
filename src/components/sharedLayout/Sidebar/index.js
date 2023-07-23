@@ -1,6 +1,6 @@
 import { Space } from "antd";
 import CommonTextField from "components/common/TextField";
-import React from "react";
+import React, { useState } from "react";
 import { ANAYLTICS_ROUTE, HOME_ROUTE } from "constant";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,60 +13,63 @@ import {
   faGear,
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
+import { Layout } from "antd";
+import { Menu } from "antd";
 
 const MENU_LIST = [
   {
-    title: "Campaign",
-    src: <FontAwesomeIcon icon={faHome} />,
+    label: "Campaign",
+    key: "1",
+    icon: <FontAwesomeIcon icon={faHome} />,
     route: HOME_ROUTE,
   },
   {
-    title: "Analytic & insights",
-    src: <FontAwesomeIcon icon={faChartSimple} />,
+    label: "Analytic & insights",
+    key: "2",
+    icon: <FontAwesomeIcon icon={faChartSimple} />,
     route: ANAYLTICS_ROUTE,
   },
   {
-    title: "Offers",
-    src: <FontAwesomeIcon icon={faNewspaper} />,
+    label: "Offers",
+    key: "3",
+    icon: <FontAwesomeIcon icon={faNewspaper} />,
     route: ANAYLTICS_ROUTE,
   },
   {
-    title: "Campaign creator",
-    src: <FontAwesomeIcon icon={faCalendar} />,
+    label: "Campaign creator",
+    key: "4",
+    icon: <FontAwesomeIcon icon={faCalendar} />,
     route: ANAYLTICS_ROUTE,
   },
   {
-    title: "Settings",
-    src: <FontAwesomeIcon icon={faGear} />,
+    label: "Settings",
+    key: "5",
+    icon: <FontAwesomeIcon icon={faGear} />,
     route: ANAYLTICS_ROUTE,
   },
   {
-    title: "Affiliate manager",
-    src: <FontAwesomeIcon icon={faUserGroup} />,
+    label: "Affiliate manager",
+    key: "6",
+    icon: <FontAwesomeIcon icon={faUserGroup} />,
     route: ANAYLTICS_ROUTE,
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ show }) => {
   const { pathname } = useRouter();
+  const [collapsed, setCollapsed] = useState(true);
+  const { Sider } = Layout;
 
   return (
-    <div className="sidebar-main">
-      <Space direction="vertical" className="w-100">
-        {MENU_LIST?.map((t, i) => (
-          <Space
-            className={`sidebar-list-item c-pointer ${
-              pathname === t.route ? "active" : ""
-            }`}
-            key={i}
-            // onClick={() => changeRoute(t?.route)}
-          >
-            {t.src}
-            <CommonTextField text={t.title} />
-          </Space>
-        ))}
-      </Space>
-    </div>
+    <Sider
+      className="web-slider"
+      collapsible
+      collapsed={collapsed}
+      onCollapse={(value) => setCollapsed(value)}
+      trigger={!show && null}
+    >
+      <Menu defaultSelectedKeys={["1"]} mode="inline" items={MENU_LIST} />
+    </Sider>
   );
 };
 

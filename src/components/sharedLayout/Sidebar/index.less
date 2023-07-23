@@ -1,28 +1,10 @@
-.sidebar-main {
-  margin: 20px 20px 0 0;
-  width: 200px;
+.web-slider {
+  padding-top: 20px;
   position: fixed;
-
-  .sidebar-list-item {
-    width: 100%;
-    padding: 10px 20px;
-
-    &:hover {
-      background: @light-grey;
-      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-
-      p {
-        color: @light-blue;
-        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-      }
-    }
-  }
-  .active {
-    background-color: @light-grey;
-    border-left: 3px solid @light-blue;
-
-    p {
-      color: @light-blue;
-    }
+  z-index: 9;
+  height: 100vh;
+  background: @white-color;
+  .ant-layout-sider-trigger {
+    background-color: @light-blue;
   }
 }
