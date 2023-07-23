@@ -43,7 +43,7 @@ const Home = () => {
           </Col>
         ))}
       </Row>
-      <div className="mt-5 table-parent p-5">
+      <div className="mt-5 table-parent">
         <CampaignTable show={true} />
       </div>
     </>

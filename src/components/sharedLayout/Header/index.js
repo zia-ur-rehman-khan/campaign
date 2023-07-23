@@ -26,7 +26,7 @@ const Header = () => {
         <Image src={logo} alt="logo" width={45} height={36} />
       </div>
       <FontAwesomeIcon className="burger" icon={faBars} onClick={showDrawer} />
-      <div className="burger">
+      <div className="logo-hide">
         <Image src={logo} alt="logo" width={45} height={36} />
       </div>
       <Avatar
