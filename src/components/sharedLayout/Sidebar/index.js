@@ -57,7 +57,7 @@ const MENU_LIST = [
 
 const Sidebar = ({ show }) => {
   const { pathname } = useRouter();
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(show);
   const { Sider } = Layout;
 
   return (
