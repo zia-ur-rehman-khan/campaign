@@ -6,6 +6,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <link rel="shortcut icon" href="/logo.jpg" />
+
         <title>Compaign</title>
       </Head>
       <Layout>
