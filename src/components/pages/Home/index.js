@@ -3,10 +3,10 @@ import DateFilters from "./DateFilters";
 import SelectFilters from "./SelectFilters";
 import { Col, Row } from "antd";
 import CommonCard from "components/common/Card";
-import { CARD_LIST } from "constant";
 import Table from "./CampaignTable";
 import CommonTable from "./CampaignTable";
 import CampaignTable from "./CampaignTable";
+import { CARD_LIST } from "utils/constant";
 
 const Home = () => {
   return (

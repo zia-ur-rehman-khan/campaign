@@ -1,7 +1,7 @@
 export const HOME_ROUTE = "/";
 export const ANAYLTICS_ROUTE = "/anaytics";
 
-export const options = [
+export const OPTIONS = [
   {
     value: "Jack",
     label: "Jack",
@@ -16,7 +16,7 @@ export const options = [
   },
 ];
 
-export const socialOptions = [
+export const SOCIAL_OPTION = [
   {
     value: "Facebook",
     label: "Facebook",

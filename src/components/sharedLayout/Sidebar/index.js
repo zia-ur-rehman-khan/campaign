@@ -1,7 +1,6 @@
 import { Space } from "antd";
 import CommonTextField from "components/common/TextField";
 import React, { useState } from "react";
-import { ANAYLTICS_ROUTE, HOME_ROUTE } from "constant";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Layout } from "antd";
 import { Menu } from "antd";
+import { ANAYLTICS_ROUTE, HOME_ROUTE } from "utils/constant";
 
 const MENU_LIST = [
   {

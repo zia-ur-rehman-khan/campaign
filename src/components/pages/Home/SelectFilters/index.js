@@ -1,7 +1,7 @@
 import React from "react";
-import { options, socialOptions } from "constant";
 import { Space } from "antd";
 import CommonSelect from "components/common/Select";
+import { OPTIONS, SOCIAL_OPTION } from "utils/constant";
 
 const SelectFilters = () => {
   return (
@@ -9,19 +9,19 @@ const SelectFilters = () => {
       <CommonSelect
         key={Math.random()}
         width={120}
-        options={options}
+        options={OPTIONS}
         defaultValue={"Daton"}
       />
       <CommonSelect
         key={Math.random()}
         width={120}
-        options={socialOptions}
+        options={SOCIAL_OPTION}
         defaultValue={"Facebook"}
       />
       <CommonSelect
         key={Math.random()}
         width={120}
-        options={options}
+        options={OPTIONS}
         defaultValue={"Tonic"}
       />
     </Space>

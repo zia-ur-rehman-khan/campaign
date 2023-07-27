@@ -5,9 +5,9 @@ import DateFilters from "../DateFilters";
 import CommonCard from "components/common/Card";
 import CommonTable from "../CampaignTable";
 import CommonTextField from "components/common/TextField";
-import { CARD_LIST } from "constant";
 import CommonHeading from "components/common/Heading";
 import CampaignTable from "../CampaignTable";
+import { CARD_LIST } from "utils/constant";
 
 const CampaignDetail = ({ data }) => {
   return (
