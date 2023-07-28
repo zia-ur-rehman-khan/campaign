@@ -1,5 +1,6 @@
 export const HOME_ROUTE = "/";
 export const ANAYLTICS_ROUTE = "/anaytics";
+export const CURRENT_USER_LOCAL_STORAGE_KEY = "user";
 
 export const OPTIONS = [
   {

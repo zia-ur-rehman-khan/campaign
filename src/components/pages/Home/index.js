@@ -7,8 +7,25 @@ import Table from "./CampaignTable";
 import CommonTable from "./CampaignTable";
 import CampaignTable from "./CampaignTable";
 import { CARD_LIST } from "utils/constant";
+import { useGetCategories } from "utils/query";
+import Loader from "components/common/Loader";
 
 const Home = () => {
+  const {
+    isLoading,
+    error,
+    data: community,
+    isFetching,
+    status,
+  } = useGetCategories();
+
+  if (isLoading) return <Loader />;
+
+  console.log(
+    "🚀 ~ file: index.js:20 ~ Home ~ community:",
+    community,
+    isLoading
+  );
   return (
     <>
       <Row gutter={[0, 20]}>
