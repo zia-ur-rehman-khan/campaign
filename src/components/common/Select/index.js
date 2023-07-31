@@ -18,12 +18,14 @@ const CommonSelect = ({
   width,
   defaultValue,
   placeholder,
+  mode,
 }) => {
   const { Option } = Select;
 
   return (
     <div className={`select-parent ${className || ""}`}>
       <Select
+        mode={mode}
         placeholder={placeholder}
         defaultValue={defaultValue}
         style={{ height, background, width }}

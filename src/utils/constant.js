@@ -4,16 +4,12 @@ export const CURRENT_USER_LOCAL_STORAGE_KEY = "user";
 
 export const OPTIONS = [
   {
-    value: "Jack",
-    label: "Jack",
+    value: "tonic",
+    label: "Tonic",
   },
   {
-    value: "Lucy",
-    label: "Lucy",
-  },
-  {
-    value: "Yiminghe",
-    label: "yiminghe",
+    value: "systeml1",
+    label: "System 1",
   },
 ];
 
