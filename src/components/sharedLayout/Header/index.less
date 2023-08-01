@@ -1,0 +1,38 @@
+.header {
+  padding: 10px 20px;
+  border-bottom: 1px solid @light-grey;
+  position: fixed;
+  top: 0;
+  background: white;
+  z-index: 1;
+
+  .burger {
+    display: none;
+  }
+  .logo-hide {
+    display: none;
+  }
+
+  @media @md {
+    .logo {
+      display: none;
+    }
+    .burger {
+      display: inline;
+      width: 20px;
+    }
+    .logo-hide {
+      display: block;
+    }
+  }
+}
+
+.ant-drawer-content-wrapper {
+  width: 200px !important;
+  .ant-drawer-title {
+    text-align: end;
+  }
+  .ant-drawer-body {
+    padding: 0;
+  }
+}
