@@ -6,7 +6,13 @@ export const Key = {
   users: "users",
 };
 
-export const useGetCampaignOverview = (page, Search, users, providers) => {
+export const useGetCampaignOverview = (
+  page,
+  Search,
+  users,
+  providers,
+  range
+) => {
   const params = new URLSearchParams();
 
   if (page) {
@@ -24,6 +30,10 @@ export const useGetCampaignOverview = (page, Search, users, providers) => {
     providers.forEach((provider) => {
       params.append("feed_providers", provider);
     });
+  }
+  if (range?.length > 0) {
+    params.append("date_since", range[0]);
+    params.append("date_until", range[1]);
   }
   return useQuery({
     queryKey: [Key.CampaignOverview],

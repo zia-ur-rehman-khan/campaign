@@ -9,9 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const SelectFilters = ({ handleUsers, users, handleProviders, providers }) => {
-  console.log("🚀 ~ file: index.js:12 ~ SelectFilters ~ users:", users);
   const { data: usersData } = useGetusers();
-  console.log("🚀 ~ file: index.js:10 ~ SelectFilters ~ users:", usersData);
 
   return (
     <Space size={20} wrap={true} className="w-100">

@@ -13,18 +13,19 @@ const Home = () => {
   const [Search, setSearch] = useState("");
   const [users, setUsers] = useState([]);
   const [providers, setProviders] = useState([]);
+  const [range, setRange] = useState([]);
 
   const {
     isLoading,
     error,
     data: campaignData,
     refetch,
-  } = useGetCampaignOverview(page, Search, users, providers);
+  } = useGetCampaignOverview(page, Search, users, providers, range);
   console.log("🚀 ~ file: index.js:23 ~ Home ~ campaignData:", campaignData);
 
   useEffect(() => {
     refetch();
-  }, [page, refetch, Search, users, providers]);
+  }, [page, refetch, Search, users, providers, range]);
 
   if (isLoading) return <Loader />;
 
@@ -43,6 +44,11 @@ const Home = () => {
   const handleProviders = (d) => {
     console.log(d, "d");
     setProviders(d);
+  };
+
+  const handleRange = (_, dateString) => {
+    console.log(dateString, "dateString");
+    setRange(dateString);
   };
 
   return (
@@ -67,7 +73,7 @@ const Home = () => {
           sm={{ span: 24 }}
           xs={{ span: 24 }}
         >
-          <DateFilters />
+          <DateFilters handleRange={handleRange} />
         </Col>
       </Row>
       <Row className="mt-5">

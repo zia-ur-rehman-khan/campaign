@@ -6,7 +6,7 @@ import React, { useState } from "react";
 const { RangePicker } = DatePicker;
 const array = ["Today", "Yesterday", "Last month"];
 
-const DateFilters = () => {
+const DateFilters = ({ handleRange }) => {
   const [filter, setFilter] = useState("Yesterday");
 
   return (
@@ -28,7 +28,7 @@ const DateFilters = () => {
           );
         })}
       </Space>
-      <RangePicker />
+      <RangePicker onChange={handleRange} />
     </Space>
   );
 };
