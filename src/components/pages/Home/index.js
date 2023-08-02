@@ -7,6 +7,7 @@ import CampaignTable from "./CampaignTable";
 import { CARD_LIST } from "utils/constant";
 import { useGetCampaignOverview, useGetCampaignStatistics } from "utils/query";
 import Loader from "components/common/Loader";
+import { statisticsdataManipulatorObject } from "utils/manupilator";
 
 const Home = () => {
   const [page, setPage] = useState(1);
@@ -20,17 +21,21 @@ const Home = () => {
     data: campaignData,
     refetch,
   } = useGetCampaignOverview(page, Search, users, providers, range);
-  console.log("🚀 ~ file: index.js:23 ~ Home ~ campaignData:", campaignData);
 
   const {
     isLoading: loadingstatistics,
     data: CampaignStatistics,
     refetch: statisticsRefresh,
-  } = useGetCampaignStatistics(page, Search, users, providers, range);
+  } = useGetCampaignStatistics(users, providers, range);
 
   console.log(
     "🚀 ~ file: index.js:23 ~ Home ~ CampaignStatistics:",
     CampaignStatistics
+  );
+
+  console.log(
+    "🚀 ~ file: index.js:23 ~ Home ~ CampaignStatistics:",
+    statisticsdataManipulatorObject(CampaignStatistics)
   );
 
   useEffect(() => {
@@ -88,18 +93,20 @@ const Home = () => {
         </Col>
       </Row>
       <Row className="mt-1">
-        {CARD_LIST.map((data) => (
-          <Col
-            xl={{ span: 4 }}
-            lg={{ span: 6 }}
-            md={{ span: 8 }}
-            sm={{ span: 12 }}
-            xs={{ span: 24 }}
-            key={Math.random()}
-          >
-            <CommonCard data={data} show={true} />
-          </Col>
-        ))}
+        {Object.values(statisticsdataManipulatorObject(CampaignStatistics)).map(
+          (data) => (
+            <Col
+              xl={{ span: 4 }}
+              lg={{ span: 6 }}
+              md={{ span: 8 }}
+              sm={{ span: 12 }}
+              xs={{ span: 24 }}
+              key={Math.random()}
+            >
+              <CommonCard range={range} data={data} show={true} />
+            </Col>
+          )
+        )}
       </Row>
       <div className="mt-5 table-parent">
         <CampaignTable

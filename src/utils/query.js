@@ -75,21 +75,9 @@ export const useGetCampaignTrend = (page, range, id) => {
   });
 };
 
-export const useGetCampaignStatistics = (
-  page,
-  Search,
-  users,
-  providers,
-  range
-) => {
+export const useGetCampaignStatistics = (users, providers, range) => {
   const params = new URLSearchParams();
 
-  if (page) {
-    params.append("page", page);
-  }
-  if (Search) {
-    params.append("q", Search);
-  }
   if (users?.length > 0) {
     users.forEach((user_id) => {
       params.append("user_ids", user_id);

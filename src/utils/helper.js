@@ -24,6 +24,9 @@ export const setUserSession = (token, user) => {
   sessionStorage?.setItem("user", JSON?.stringify(user));
 };
 
+export const formatNumWithPrecision = (num, fixed = 2) =>
+  Number.isInteger(num) ? num : +num?.toFixed(fixed);
+
 // export const APIEndpoint = "http://161.35.62.226:8000";
 
 //get current api data just pass the key
