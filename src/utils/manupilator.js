@@ -22,14 +22,14 @@ export function campaignManupilator(list = []) {
         : `$${campaign?.profit}`;
       payload.roi = !campaign?.return_on_invest
         ? "-"
-        : `$${campaign?.return_on_invest}`;
+        : `${campaign?.return_on_invest}%`;
       payload.conversions = !campaign?.results ? "-" : campaign?.results;
       payload.cpr = !campaign?.cost_per_result
         ? "-"
         : `$${campaign?.cost_per_result}`;
       payload.cvr = !campaign?.conversion_rate
         ? "-"
-        : campaign?.conversion_rate;
+        : `${campaign?.conversion_rate}%`;
       payload.rpc = !campaign?.revenue_per_click
         ? "-"
         : `$${campaign?.revenue_per_click}`;
