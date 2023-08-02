@@ -8,7 +8,7 @@ export const OPTIONS = [
     label: "Tonic",
   },
   {
-    value: "systeml1",
+    value: "system1",
     label: "System 1",
   },
 ];
