@@ -64,7 +64,7 @@ const Home = () => {
 
   return (
     <>
-      <Row gutter={[0, 20]}>
+      <Row gutter={[0, 20]} className="filter-height">
         <Col
           lg={{ span: 12 }}
           md={{ span: 24 }}
@@ -87,7 +87,7 @@ const Home = () => {
           <DateFilters handleRange={handleRange} />
         </Col>
       </Row>
-      <Row className="mt-5">
+      <Row className="mt-1">
         {CARD_LIST.map((data) => (
           <Col
             xl={{ span: 4 }}

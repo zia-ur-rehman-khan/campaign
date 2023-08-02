@@ -12,10 +12,9 @@ const SelectFilters = ({ handleUsers, users, handleProviders, providers }) => {
   const { data: usersData } = useGetusers();
 
   return (
-    <Space size={20} wrap={true} className="w-100">
+    <Space size={20} wrap={true} className="w-100 align-items-start">
       <CommonSelect
         key={Math.random()}
-        width={120}
         options={selectManupilator(usersData)}
         mode="multiple"
         placeholder="select users"
@@ -24,13 +23,12 @@ const SelectFilters = ({ handleUsers, users, handleProviders, providers }) => {
       />
       <CommonSelect
         key={Math.random()}
-        width={120}
+        mode="multiple"
         options={SOCIAL_OPTION}
         defaultValue={"Facebook"}
       />
       <CommonSelect
         key={Math.random()}
-        width={120}
         options={OPTIONS}
         mode="multiple"
         placeholder="select providers"

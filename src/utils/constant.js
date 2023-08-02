@@ -1,15 +1,19 @@
 export const HOME_ROUTE = "/";
 export const ANAYLTICS_ROUTE = "/anaytics";
 export const CURRENT_USER_LOCAL_STORAGE_KEY = "user";
+import Image from "next/image";
+import fb from "../../public/fb.png";
 
 export const OPTIONS = [
   {
     value: "tonic",
     label: "Tonic",
+    iconUrl: "https://publisher.tonic.com/favicon.ico",
   },
   {
     value: "system1",
     label: "System 1",
+    iconUrl: "https://partner.system1.com/favicon.ico",
   },
 ];
 
@@ -17,14 +21,7 @@ export const SOCIAL_OPTION = [
   {
     value: "Facebook",
     label: "Facebook",
-  },
-  {
-    value: "Insta",
-    label: "Insta",
-  },
-  {
-    value: "Youtube",
-    label: "Youtube",
+    icon: <Image src={fb} width={20} height={20} alt="icon" />,
   },
 ];
 

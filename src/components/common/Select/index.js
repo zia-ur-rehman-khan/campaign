@@ -2,6 +2,7 @@
 import React from "react";
 import { Input } from "antd";
 import { Select } from "antd";
+import { Space } from "antd";
 
 const CommonSelect = ({
   name,
@@ -37,7 +38,16 @@ const CommonSelect = ({
       >
         {options.map((option) => (
           <Option key={option.value} value={option.value}>
-            {option.icon} {option.label}
+            {option.icon || option.iconUrl ? (
+              <Space size={3} align="start">
+                {option.iconUrl && (
+                  <img src={option.iconUrl} width={20} height={20} alt="icon" />
+                )}
+                {option.icon && option.icon} {option.label}
+              </Space>
+            ) : (
+              option.label
+            )}
           </Option>
         ))}
       </Select>
