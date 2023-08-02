@@ -63,3 +63,71 @@ export const CARD_LIST = [
     color: "green",
   },
 ];
+
+export const SORT_BY = [
+  {
+    label: "Campaign",
+    value: "name",
+  },
+  {
+    label: "Status",
+    value: "status",
+  },
+  {
+    label: "Spend",
+    value: "spend",
+  },
+  {
+    label: "Results",
+    value: "results",
+  },
+  {
+    label: "Link Clicks",
+    value: "link_clicks",
+  },
+  {
+    label: "Clicks",
+    value: "clicks",
+  },
+  {
+    label: "Impressions",
+    value: "impressions",
+  },
+  {
+    label: "Reach",
+    value: "reach",
+  },
+  {
+    label: "Conversions",
+    value: "conversions",
+  },
+  {
+    label: "Revenue",
+    value: "revenue",
+  },
+  {
+    label: "Profit",
+    value: "profit",
+  },
+  {
+    label: "Return On Invest",
+    value: "return_on_invest",
+  },
+  {
+    label: "Cost Per Result",
+    value: "cost_per_result",
+  },
+  {
+    label: "Conversion Rate",
+    value: "conversion_rate",
+  },
+  {
+    label: "Revenue Per Click",
+    value: "revenue_per_click",
+  },
+  {
+    label: "Click Through Rate",
+    value: "click_through_rate",
+  },
+];
+

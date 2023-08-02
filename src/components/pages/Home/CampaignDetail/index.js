@@ -19,13 +19,18 @@ import { statisticsdataManipulatorObject } from "utils/manupilator";
 const CampaignDetail = ({ data }) => {
   const [page, setPage] = useState(1);
   const [range, setRange] = useState([]);
+  const [filter, setFilter] = useState({
+    sort: null,
+    sortBy: null,
+  });
 
   const {
     isLoading,
     error,
     data: campaignData,
     refetch,
-  } = useGetCampaignTrend(page, range, data?.id);
+
+  } = useGetCampaignTrend(page, range, data?.id,filter);
 
   const {
     isLoading: loadingstatistics,
@@ -38,10 +43,11 @@ const CampaignDetail = ({ data }) => {
     CampaignStatistics
   );
 
+
+  
   useEffect(() => {
     refetch();
-    statisticsRefresh();
-  }, [page, refetch, statisticsRefresh, range]);
+  }, [page, refetch,statisticsRefresh, range, filter["sort"], filter["sortBy"]]);
 
   if (isLoading || loadingstatistics) return <Loader />;
 
@@ -94,6 +100,8 @@ const CampaignDetail = ({ data }) => {
           handlePaginationChange={handlePaginationChange}
           page={page}
           campaignData={campaignData}
+          setFilter={setFilter}
+          filter={filter}
         />
       </div>
     </>

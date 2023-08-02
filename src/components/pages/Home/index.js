@@ -15,12 +15,16 @@ const Home = () => {
   const [users, setUsers] = useState([]);
   const [providers, setProviders] = useState([]);
   const [range, setRange] = useState([]);
+  const [filter, setFilter] = useState({
+    sort: null,
+    sortBy: null,
+  });
 
   const {
     isLoading,
     data: campaignData,
     refetch,
-  } = useGetCampaignOverview(page, Search, users, providers, range);
+  } = useGetCampaignOverview(page, Search, users, providers, range, filter);
 
   const {
     isLoading: loadingstatistics,
@@ -28,20 +32,21 @@ const Home = () => {
     refetch: statisticsRefresh,
   } = useGetCampaignStatistics(users, providers, range);
 
-  console.log(
-    "🚀 ~ file: index.js:23 ~ Home ~ CampaignStatistics:",
-    CampaignStatistics
-  );
-
-  console.log(
-    "🚀 ~ file: index.js:23 ~ Home ~ CampaignStatistics:",
-    statisticsdataManipulatorObject(CampaignStatistics)
-  );
-
   useEffect(() => {
     refetch();
     statisticsRefresh();
-  }, [page, refetch, statisticsRefresh, Search, users, providers, range]);
+  }, [
+    page,
+    refetch,
+    statisticsRefresh,
+    users,
+    providers,
+    range,
+    filter["sort"],
+    filter["sortBy"],
+  ]);
+
+  useDebounceEffect(refetch, 1000, [Search]);
 
   if (isLoading || loadingstatistics) return <Loader />;
 
@@ -115,10 +120,24 @@ const Home = () => {
           page={page}
           campaignData={campaignData}
           handleSearch={handleSearch}
+          setFilter={setFilter}
+          filter={filter}
         />
       </div>
     </>
   );
 };
+
+function useDebounceEffect(fn, waitTime, deps) {
+  useEffect(() => {
+    const t = setTimeout(() => {
+      fn.apply(undefined, deps);
+    }, waitTime);
+
+    return () => {
+      clearTimeout(t);
+    };
+  }, deps);
+}
 
 export default Home;

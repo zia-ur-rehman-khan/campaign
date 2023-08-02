@@ -35,6 +35,8 @@ const CommonSelect = ({
         onChange={onChange}
         onBlur={onBlur}
         value={value}
+        popupClassName="common-select"
+        
       >
         {options.map((option) => (
           <Option key={option.value} value={option.value}>

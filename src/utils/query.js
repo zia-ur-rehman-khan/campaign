@@ -13,7 +13,8 @@ export const useGetCampaignOverview = (
   Search,
   users,
   providers,
-  range
+  range,
+  filter
 ) => {
   const params = new URLSearchParams();
 
@@ -37,6 +38,14 @@ export const useGetCampaignOverview = (
     params.append("date_since", range[0]);
     params.append("date_until", range[1]);
   }
+
+  if (filter?.sortBy) {
+    params.append("sort_by", filter?.sortBy);
+  }
+  if (filter?.sort) {
+    params.append("sort_order", filter?.sort);
+  }
+
   return useQuery({
     queryKey: [Key.CampaignOverview],
     queryFn: () =>
@@ -54,7 +63,7 @@ export const useGetusers = () => {
   });
 };
 
-export const useGetCampaignTrend = (page, range, id) => {
+export const useGetCampaignTrend = (page, range, id,filter) => {
   const params = new URLSearchParams();
 
   if (page) {
@@ -64,6 +73,9 @@ export const useGetCampaignTrend = (page, range, id) => {
   if (range?.length > 0) {
     params.append("date_since", range[0]);
     params.append("date_until", range[1]);
+  }
+  if (filter?.sort) {
+    params.append("sort_order", filter?.sort);
   }
   return useQuery({
     queryKey: [Key.CampaignTrend],
