@@ -63,39 +63,22 @@ const CampaignTable = ({
       key: d,
     };
 
-    // if (d === "profit") {
-    //   data.render = (profit) => {
-    //     let color;
-    //     if (5 < profit && profit < 6) {
-    //       color = "red";
-    //       return <span className={color}>{`-$${profit}`}</span>;
-    //     } else {
-    //       color = "green";
-    //       return <span className={color}>{`$${profit}`}</span>;
-    //     }
-    //   };
-    // } else if (d === "campaign") {
-    //   data.render = (id, { profit }) => {
-    //     let color;
-    //     if (5 < profit && profit < 6) {
-    //       color = "background-red";
-    //       return (
-    //         <Space>
-    //           <div className={`round ${color}`}></div>
-    //           {id}
-    //         </Space>
-    //       );
-    //     } else {
-    //       color = "background-green";
-    //       return (
-    //         <Space>
-    //           <div className={`round ${color}`}></div>
-    //           {id}
-    //         </Space>
-    //       );
-    //     }
-    //   };
-    // }
+    if (d === "profit") {
+      data.render = (profit, { color }) => {
+        return <span className={color}>{profit}</span>;
+      };
+    }
+
+    if (d === "campaign") {
+      data.render = (id, { color }) => {
+        return (
+          <Space>
+            <div className={`round background-${color}`}></div>
+            {id}
+          </Space>
+        );
+      };
+    }
 
     return data;
   });
