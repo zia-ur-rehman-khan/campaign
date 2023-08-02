@@ -16,7 +16,7 @@ const CommonSelect = ({
   height,
   background,
   options,
-  width,
+  width = "100%",
   defaultValue,
   placeholder,
   mode,
@@ -36,7 +36,7 @@ const CommonSelect = ({
         onBlur={onBlur}
         value={value}
         popupClassName="common-select"
-        
+        maxTagCount={"responsive"}
       >
         {options.map((option) => (
           <Option key={option.value} value={option.value}>
