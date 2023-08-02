@@ -5,7 +5,7 @@ import { Col, Row } from "antd";
 import CommonCard from "components/common/Card";
 import CampaignTable from "./CampaignTable";
 import { CARD_LIST } from "utils/constant";
-import { useGetCampaignOverview } from "utils/query";
+import { useGetCampaignOverview, useGetCampaignStatistics } from "utils/query";
 import Loader from "components/common/Loader";
 
 const Home = () => {
@@ -17,17 +17,28 @@ const Home = () => {
 
   const {
     isLoading,
-    error,
     data: campaignData,
     refetch,
   } = useGetCampaignOverview(page, Search, users, providers, range);
   console.log("🚀 ~ file: index.js:23 ~ Home ~ campaignData:", campaignData);
 
+  const {
+    isLoading: loadingstatistics,
+    data: CampaignStatistics,
+    refetch: statisticsRefresh,
+  } = useGetCampaignStatistics(page, Search, users, providers, range);
+
+  console.log(
+    "🚀 ~ file: index.js:23 ~ Home ~ CampaignStatistics:",
+    CampaignStatistics
+  );
+
   useEffect(() => {
     refetch();
-  }, [page, refetch, Search, users, providers, range]);
+    statisticsRefresh();
+  }, [page, refetch, statisticsRefresh, Search, users, providers, range]);
 
-  if (isLoading) return <Loader />;
+  if (isLoading || loadingstatistics) return <Loader />;
 
   const handlePaginationChange = (page) => {
     setPage(page);

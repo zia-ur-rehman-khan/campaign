@@ -7,21 +7,32 @@ export function campaignManupilator(list = []) {
     const campaignList = [];
     for (const campaign of list) {
       const payload = {};
-      payload.id = campaign?.id ?? "";
-      payload.day = campaign?.day ?? "";
-      payload.campaign = campaign?.name ?? "";
-      payload.spend = `$${campaign?.spend ?? 0}`;
-      payload.clicks = campaign?.link_clicks ?? 0;
-      payload.revenue = `$${campaign?.revenue ?? 0}`;
+      payload.id = campaign?.id ?? "-";
+      payload.day = campaign?.day ?? "-";
+      payload.campaign = campaign?.name === "" ? "-" : campaign?.name;
+      payload.spend = campaign?.spend === 0 ? "-" : `$${campaign?.spend}`;
+      payload.clicks =
+        campaign?.link_clicks === 0 ? "-" : campaign?.link_clicks;
+      payload.revenue = campaign?.revenue === 0 ? "-" : `$${campaign?.revenue}`;
       payload.profit =
-        campaign?.profit < 0
+        campaign?.profit === 0
+          ? "-"
+          : campaign?.profit < 0
           ? `-$${Math.abs(campaign?.profit)}`
           : `$${campaign?.profit}`;
-      payload.roi = `$${campaign?.return_on_invest ?? 0}`;
-      payload.conversions = campaign?.results ?? 0;
-      payload.cpr = `$${campaign?.cost_per_result ?? 0}`;
-      payload.cvr = campaign?.conversion_rate ?? 0;
-      payload.rpc = `$${campaign?.revenue_per_click ?? 0}`;
+      payload.roi =
+        campaign?.return_on_invest === 0
+          ? "-"
+          : `$${campaign?.return_on_invest}`;
+      payload.conversions = campaign?.results === 0 ? "-" : campaign?.results;
+      payload.cpr =
+        campaign?.cost_per_result === 0 ? "-" : `$${campaign?.cost_per_result}`;
+      payload.cvr =
+        campaign?.conversion_rate === 0 ? "-" : campaign?.conversion_rate;
+      payload.rpc =
+        campaign?.revenue_per_click === 0
+          ? "-"
+          : `$${campaign?.revenue_per_click}`;
       payload.bid = "-";
       payload.color = campaign?.profit < 0 ? "red" : "green";
 
@@ -55,5 +66,37 @@ export function selectManupilator(list = []) {
   } catch (error) {
     console.error("selectManupilator error --->>>> ", error);
     return [];
+  }
+}
+
+export function stocksdataManipulatorObject(stock = {}) {
+  try {
+    if (_.isEmpty(stock)) return {};
+
+    const payload = {};
+
+    payload.spend = campaign?.spend === 0 ? "-" : `$${campaign?.spend}`;
+    payload.revenue = campaign?.revenue === 0 ? "-" : `$${campaign?.revenue}`;
+
+    payload.profit =
+      campaign?.profit === 0
+        ? "-"
+        : campaign?.profit < 0
+        ? `-$${Math.abs(campaign?.profit)}`
+        : `$${campaign?.profit}`;
+    payload.roi =
+      campaign?.return_on_invest === 0 ? "-" : `$${campaign?.return_on_invest}`;
+    payload.rpc =
+      campaign?.click_through_rate === 0
+        ? "-"
+        : `$${campaign?.click_through_rate}`;
+    payload.ctr =
+      campaign?.click_through_rate === 0
+        ? "-"
+        : `$${campaign?.click_through_rate}`;
+
+    return payload;
+  } catch (error) {
+    console.error("singleStockNameManipulator error --->>> ", error);
   }
 }
