@@ -69,9 +69,9 @@ export function selectManupilator(list = []) {
   }
 }
 
-export function stocksdataManipulatorObject(stock = {}) {
+export function stocksdataManipulatorObject(campaign = {}) {
   try {
-    if (_.isEmpty(stock)) return {};
+    if (Object.keys(campaign).length === 0) return {};
 
     const payload = {};
 
