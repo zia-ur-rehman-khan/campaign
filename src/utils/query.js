@@ -4,6 +4,7 @@ import { axiosRequest } from "./webServices";
 export const Key = {
   CampaignOverview: "CampaignOverview",
   users: "users",
+  CampaignTrend: "CampaignTrend",
 };
 
 export const useGetCampaignOverview = (
@@ -49,5 +50,26 @@ export const useGetusers = () => {
   return useQuery({
     queryKey: [Key.users],
     queryFn: () => axiosRequest("get", "api/v1/users").then((res) => res),
+  });
+};
+
+export const useGetCampaignTrend = (page, range, id) => {
+  const params = new URLSearchParams();
+
+  if (page) {
+    params.append("page", page);
+  }
+
+  if (range?.length > 0) {
+    params.append("date_since", range[0]);
+    params.append("date_until", range[1]);
+  }
+  return useQuery({
+    queryKey: [Key.CampaignTrend],
+    queryFn: () =>
+      axiosRequest(
+        "get",
+        `api/v1/campaigns/${id}/trend?${params.toString()}`
+      ).then((res) => res),
   });
 };

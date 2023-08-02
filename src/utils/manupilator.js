@@ -7,6 +7,8 @@ export function campaignManupilator(list = []) {
     const campaignList = [];
     for (const campaign of list) {
       const payload = {};
+      payload.id = campaign?.id ?? "";
+      payload.day = campaign?.day ?? "";
       payload.campaign = campaign?.name ?? "";
       payload.spend = `$${campaign?.spend ?? 0}`;
       payload.clicks = campaign?.link_clicks ?? 0;
