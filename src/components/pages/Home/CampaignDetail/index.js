@@ -29,8 +29,7 @@ const CampaignDetail = ({ data }) => {
     error,
     data: campaignData,
     refetch,
-
-  } = useGetCampaignTrend(page, range, data?.id,filter);
+  } = useGetCampaignTrend(page, range, data?.id, filter);
 
   const {
     isLoading: loadingstatistics,
@@ -43,11 +42,16 @@ const CampaignDetail = ({ data }) => {
     CampaignStatistics
   );
 
-
-  
   useEffect(() => {
     refetch();
-  }, [page, refetch,statisticsRefresh, range, filter["sort"], filter["sortBy"]]);
+  }, [
+    page,
+    refetch,
+    statisticsRefresh,
+    range,
+    filter["sort"],
+    filter["sortBy"],
+  ]);
 
   if (isLoading || loadingstatistics) return <Loader />;
 
