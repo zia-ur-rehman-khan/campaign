@@ -25,7 +25,7 @@ export const useGetCampaignOverview = (
   }
   if (users?.length > 0) {
     users.forEach((user_id) => {
-      params.append("user_ids", `"${encodeURIComponent(user_id)}"`);
+      params.append("user_ids", user_id);
     });
   }
   if (providers?.length > 0) {
@@ -92,7 +92,7 @@ export const useGetCampaignStatistics = (
   }
   if (users?.length > 0) {
     users.forEach((user_id) => {
-      params.append("user_ids", `"${encodeURIComponent(user_id)}"`);
+      params.append("user_ids", user_id);
     });
   }
   if (providers?.length > 0) {
