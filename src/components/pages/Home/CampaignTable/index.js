@@ -49,11 +49,7 @@ const CampaignTable = ({
         ...pre,
       ]);
     } else {
-      setColumns((pre) => [
-        { label: "Day", value: "day", show: true },
-        ...pre,
-      ]);
-
+      setColumns((pre) => [{ label: "Day", value: "day", show: true }, ...pre]);
     }
   }, []);
 
@@ -107,7 +103,7 @@ const CampaignTable = ({
         </div>
       )}
       <Row gutter={[12, 12]} align="center" className="my-4">
-        <Col xs={22} md={12}>
+        <Col xs={22} md={8}>
           <CommonTextField
             text={"Column Visibility"}
             font={"General Sans"}
@@ -132,7 +128,7 @@ const CampaignTable = ({
             maxTagCount={"responsive"}
           />
         </Col>
-        <Col xs={11} md={6}>
+        <Col xs={11} md={8}>
           <CommonTextField
             text={"Sort By Column"}
             font={"General Sans"}
@@ -149,7 +145,7 @@ const CampaignTable = ({
             maxTagCount={"responsive"}
           />
         </Col>
-        <Col xs={11} md={6}>
+        <Col xs={11} md={8}>
           <CommonTextField text={"Sort"} font={"General Sans"} mb={5} />
           <Select
             style={{ width: "100%" }}
