@@ -14,7 +14,6 @@ const SelectFilters = ({ handleUsers, users, handleProviders, providers }) => {
   return (
     <Space size={20} wrap={true} className="w-100 align-items-start">
       <CommonSelect
-        key={Math.random()}
         options={selectManupilator(usersData)}
         mode="multiple"
         placeholder="select users"
@@ -22,13 +21,11 @@ const SelectFilters = ({ handleUsers, users, handleProviders, providers }) => {
         value={users}
       />
       <CommonSelect
-        key={Math.random()}
         mode="multiple"
         options={SOCIAL_OPTION}
         defaultValue={"Facebook"}
       />
       <CommonSelect
-        key={Math.random()}
         options={OPTIONS}
         mode="multiple"
         placeholder="select providers"
