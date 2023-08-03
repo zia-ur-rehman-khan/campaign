@@ -93,7 +93,7 @@ const Home = () => {
 
   return (
     <>
-      <Row gutter={[0, 20]} className="filter-height">
+      <Row gutter={[0, 20]}>
         <Col
           lg={{ span: 12 }}
           md={{ span: 24 }}
@@ -116,7 +116,7 @@ const Home = () => {
           <DateFilters handleRange={handleRange} range={range} />
         </Col>
       </Row>
-      <Row className="mt-1">
+      <Row className="mt-5">
         {Object.values(statisticsdataManipulatorObject(CampaignStatistics)).map(
           (data) => (
             <Col
