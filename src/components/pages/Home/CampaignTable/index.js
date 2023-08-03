@@ -71,13 +71,13 @@ const CampaignTable = ({
       className: d.show ? "" : "hide-column",
     };
 
-    if (d === "profit") {
+    if (d.value === "profit") {
       data.render = (profit, { color }) => {
         return <span className={color}>{profit}</span>;
       };
     }
 
-    if (d === "campaign") {
+    if (d.value === "campaign") {
       data.render = (id, { color }) => {
         return (
           <Space>

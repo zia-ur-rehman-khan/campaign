@@ -19,7 +19,7 @@ export function campaignManupilator(list = []) {
       payload.profit = !campaign?.profit
         ? "-"
         : campaign?.profit < 0
-        ? `-$${Math.abs(campaign?.profit)}`
+        ? `$${Math.abs(campaign?.profit)}`
         : `$${campaign?.profit}`;
       payload.roi = !campaign?.return_on_invest
         ? "-"
@@ -109,7 +109,7 @@ export function statisticsdataManipulatorObject(campaign = {}) {
       amount: !campaign?.profit
         ? "-"
         : campaign?.profit < 0
-        ? `-$${Math.abs(campaign?.profit)}`
+        ? `$${Math.abs(campaign?.profit)}`
         : `$${campaign?.profit}`,
       per:
         campaign?.profit === null || campaign?.profit_before === null
