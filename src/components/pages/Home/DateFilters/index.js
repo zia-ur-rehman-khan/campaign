@@ -1,14 +1,14 @@
 import { DatePicker } from "antd";
 import { Space } from "antd";
 import CommonTextField from "components/common/TextField";
+import moment from "moment";
 import React, { useState } from "react";
+import { DATE_OPTIONS } from "utils/constant";
 
 const { RangePicker } = DatePicker;
-const array = ["Today", "Yesterday", "Last month"];
 
-const DateFilters = ({ handleRange }) => {
-  const [filter, setFilter] = useState("Yesterday");
-
+const DateFilters = ({ handleRange, range }) => {
+  console.log("🚀 ~ file: index.js:10 ~ DateFilters ~ range:", range);
   return (
     <Space
       size={20}
@@ -16,19 +16,19 @@ const DateFilters = ({ handleRange }) => {
       className="w-100 justify-content-between datefilter-main"
     >
       <Space size={0}>
-        {array.map((t) => {
+        {DATE_OPTIONS.map((t) => {
           return (
             <div
-              className={`filter-button ${t === filter && "active"}`}
+              className={`filter-button ${t === range && "active"}`}
               key={Math.random()}
-              onClick={() => setFilter(t)}
+              onClick={() => handleRange("date", t)}
             >
               <CommonTextField text={t} />
             </div>
           );
         })}
       </Space>
-      <RangePicker onChange={handleRange} />
+      <RangePicker onChange={handleRange} value={range} />
     </Space>
   );
 };

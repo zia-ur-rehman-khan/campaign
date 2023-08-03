@@ -8,13 +8,13 @@ import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 
 const CommonCard = ({ range, data, show }) => {
-  console.log("🚀 ~ file: index.js:10 ~ CommonCard ~ range:", range);
-
   const days = () => {
-    const momentDate1 = moment(range[0]);
-    const momentDate2 = moment(range[1]);
+    const momentDate1 = moment(range?.[0]);
+    const momentDate2 = moment(range?.[1]);
     return momentDate2.diff(momentDate1, "days");
   };
+
+  console.log(range, "range");
 
   const { amount, per, color, label } = data;
   return (

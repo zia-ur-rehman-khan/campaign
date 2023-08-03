@@ -8,6 +8,7 @@ import { CARD_LIST } from "utils/constant";
 import { useGetCampaignOverview, useGetCampaignStatistics } from "utils/query";
 import Loader from "components/common/Loader";
 import { statisticsdataManipulatorObject } from "utils/manupilator";
+import moment from "moment";
 
 const Home = () => {
   const [page, setPage] = useState(1);
@@ -67,9 +68,27 @@ const Home = () => {
     setProviders(d);
   };
 
-  const handleRange = (_, dateString) => {
-    console.log(dateString, "dateString");
-    setRange(dateString);
+  const handleRange = (date, dateString) => {
+    if (date === "date") {
+      if (dateString === "Today") {
+        const today = moment();
+
+        setRange([today, today]);
+      } else if (dateString === "Yesterday") {
+        const today = moment();
+        const yesterday = today?.subtract(1, "days");
+        setRange([yesterday, yesterday]);
+      } else if (dateString === "Last month") {
+        const today = moment();
+        const lastMonthDate = today.subtract(1, "months");
+        const tomorrow = lastMonthDate.add(1, "days");
+        const formatToday = moment();
+        setRange([tomorrow, formatToday]);
+      }
+    } else {
+      console.log(date, "date");
+      setRange(date);
+    }
   };
 
   return (
@@ -94,7 +113,7 @@ const Home = () => {
           sm={{ span: 24 }}
           xs={{ span: 24 }}
         >
-          <DateFilters handleRange={handleRange} />
+          <DateFilters handleRange={handleRange} range={range} />
         </Col>
       </Row>
       <Row className="mt-1">

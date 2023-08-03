@@ -35,8 +35,11 @@ export const useGetCampaignOverview = (
     });
   }
   if (range?.length > 0) {
-    params.append("date_since", range[0]);
-    params.append("date_until", range[1]);
+    let sinceFormat = range[0].format("YYYY-MM-DD");
+    let sinceuntil = range[1].format("YYYY-MM-DD");
+
+    params.append("date_since", sinceFormat);
+    params.append("date_until", sinceuntil);
   }
 
   if (filter?.sortBy) {
@@ -63,7 +66,7 @@ export const useGetusers = () => {
   });
 };
 
-export const useGetCampaignTrend = (page, range, id,filter) => {
+export const useGetCampaignTrend = (page, range, id, filter) => {
   const params = new URLSearchParams();
 
   if (page) {
@@ -71,8 +74,11 @@ export const useGetCampaignTrend = (page, range, id,filter) => {
   }
 
   if (range?.length > 0) {
-    params.append("date_since", range[0]);
-    params.append("date_until", range[1]);
+    let sinceFormat = range[0].format("YYYY-MM-DD");
+    let sinceuntil = range[1].format("YYYY-MM-DD");
+
+    params.append("date_since", sinceFormat);
+    params.append("date_until", sinceuntil);
   }
   if (filter?.sort) {
     params.append("sort_order", filter?.sort);
@@ -88,6 +94,10 @@ export const useGetCampaignTrend = (page, range, id,filter) => {
 };
 
 export const useGetCampaignStatistics = (users, providers, range) => {
+  console.log(
+    "🚀 ~ file: query.js:97 ~ useGetCampaignStatistics ~ range:",
+    range
+  );
   const params = new URLSearchParams();
 
   if (users?.length > 0) {
@@ -101,8 +111,11 @@ export const useGetCampaignStatistics = (users, providers, range) => {
     });
   }
   if (range?.length > 0) {
-    params.append("date_since", range[0]);
-    params.append("date_until", range[1]);
+    let sinceFormat = range[0].format("YYYY-MM-DD");
+    let sinceuntil = range[1].format("YYYY-MM-DD");
+
+    params.append("date_since", sinceFormat);
+    params.append("date_until", sinceuntil);
   }
   return useQuery({
     queryKey: [Key.CampaignStatistics],
