@@ -9,6 +9,7 @@ export function campaignManupilator(list = []) {
     const campaignList = [];
     for (const campaign of list) {
       const payload = {};
+      payload.key = Math.random();
       payload.id = campaign?.id ?? "-";
       payload.day = campaign?.day ?? "-";
       payload.campaign = campaign?.name === "" ? "-" : campaign?.name;
