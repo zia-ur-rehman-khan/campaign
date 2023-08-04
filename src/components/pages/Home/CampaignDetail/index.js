@@ -40,8 +40,11 @@ const CampaignDetail = ({ data }) => {
   } = useGetCampaignTrendStatistics(range, data?.id);
 
   useEffect(() => {
-    refetch();
     statisticsRefresh();
+  }, [statisticsRefresh, range, data]);
+
+  useEffect(() => {
+    refetch();
   }, [
     page,
     refetch,

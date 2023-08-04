@@ -34,12 +34,14 @@ const Home = () => {
   } = useGetCampaignStatistics(users, providers, range);
 
   useEffect(() => {
-    refetch();
     statisticsRefresh();
+  }, [users, providers, statisticsRefresh, range]);
+
+  useEffect(() => {
+    refetch();
   }, [
     page,
     refetch,
-    statisticsRefresh,
     users,
     providers,
     range,
