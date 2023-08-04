@@ -1,4 +1,4 @@
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faGear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Space } from "antd";
 import { Modal } from "antd";
@@ -15,6 +15,9 @@ import { useQueryClient } from "react-query";
 import { Select } from "antd/lib";
 import CommonTextField from "components/common/TextField";
 import { SORT_BY } from "utils/constant";
+import CommonDropdown from "components/common/CommonDropdown";
+import { Checkbox } from "antd";
+import CommonCheckBox from "components/common/Fields/CommonCheckBox";
 
 const CampaignTable = ({
   show,
@@ -22,11 +25,11 @@ const CampaignTable = ({
   handlePaginationChange,
   page,
   handleSearch,
-  setFilter,
-  filter,
   isFetching,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState({ visible: false, data: {} });
+  const [visible, setVisible] = useState(false);
+
   const [columnsd, setColumns] = useState([
     { label: "Spend", value: "spend", show: true },
     { label: "Clicks", value: "clicks", show: true },
@@ -45,12 +48,17 @@ const CampaignTable = ({
 
   useEffect(() => {
     if (show) {
-      setColumns((pre) => [
-        { label: "Campaign", value: "campaign", show: true },
-        ...pre,
-      ]);
+      !columnsd.some((i) => i.value === "campaign") &&
+        setColumns((pre) => [
+          { label: "Campaign", value: "campaign", show: true },
+          ...pre,
+        ]);
     } else {
-      setColumns((pre) => [{ label: "Day", value: "day", show: true }, ...pre]);
+      !columnsd.some((i) => i.value === "day") &&
+        setColumns((pre) => [
+          { label: "Day", value: "day", show: true },
+          ...pre,
+        ]);
     }
   }, []);
 
@@ -64,12 +72,13 @@ const CampaignTable = ({
     setIsModalOpen({ visible: true, data: data });
   };
 
-  const columns = columnsd?.map((d) => {
+  const columns = columnsd?.map((d, ind) => {
     let data = {
       title: d?.label?.toUpperCase(),
       dataIndex: d.value,
       key: d.value,
       className: d.show ? "" : "hide-column",
+      sortDirections: ["ascend", "descend"],
     };
 
     data["sorter"] = {
@@ -77,14 +86,15 @@ const CampaignTable = ({
         const aValue = a?.[d?.value];
         const bValue = b?.[d?.value];
 
-        if (typeof aValue === "number" && typeof aValue === "number") {
-          return aValue - aValue;
+        if (typeof aValue === "number" && typeof bValue === "number") {
+          return aValue - bValue;
         }
 
         return aValue == "-" || bValue == "-" || !aValue || !bValue
           ? -1
           : a?.[d?.value]?.localeCompare(b?.[d?.value]);
       },
+      multiple: ind + 1,
     };
 
     if (d.value === "campaign") {
@@ -107,75 +117,60 @@ const CampaignTable = ({
     return data;
   });
 
+  const columnVisiblityHandler = (ind) => () => {
+    setColumns((p) =>
+      p.map((item, i) =>
+        ind == i
+          ? {
+              ...item,
+              show: !item["show"],
+            }
+          : item
+      )
+    );
+  };
+
   return (
     <div>
-      {show && (
-        <div className="mb-3">
-          <CommonInputField
-            onChange={(e) => handleSearch(e.target.value)}
-            prefix={<FontAwesomeIcon icon={faSearch} />}
-            placeholder={"Search..."}
-          />
-        </div>
-      )}
-      <Row gutter={[12, 12]} align="center" className="my-4">
-        <Col xs={22} md={8}>
-          <CommonTextField
-            text={"Column Visibility"}
-            font={"General Sans"}
-            mb={5}
-          />
-          <Select
-            mode={"multiple"}
-            style={{ width: "100%" }}
-            value={columnsd.filter((c) => c.show).map(({ value }) => value)}
-            options={columnsd}
-            onChange={(columnVisiblity) => {
-              if (columnVisiblity.length) {
-                setColumns(
-                  columnsd.map((i) => ({
-                    ...i,
-                    show: columnVisiblity.includes(i.value),
-                  }))
-                );
-              }
-            }}
-            placeholder={"Select Item..."}
-            maxTagCount={"responsive"}
-          />
+      <Row
+        className="mb-3"
+        gutter={[15]}
+        align={"middle"}
+        justify="space-between"
+      >
+        <Col span={23}>
+          {show && (
+            <div>
+              <CommonInputField
+                onChange={(e) => handleSearch(e.target.value)}
+                prefix={<FontAwesomeIcon icon={faSearch} />}
+                placeholder={"Search..."}
+              />
+            </div>
+          )}
         </Col>
-        <Col xs={11} md={8}>
-          <CommonTextField
-            text={"Sort By Column"}
-            font={"General Sans"}
-            mb={5}
-          />
-          <Select
-            style={{ width: "100%" }}
-            value={filter?.sortBy}
-            options={SORT_BY}
-            onChange={(sortBy) => {
-              setFilter((p) => ({ ...p, sortBy }));
-            }}
-            placeholder={"Select Item..."}
-            maxTagCount={"responsive"}
-          />
-        </Col>
-        <Col xs={11} md={8}>
-          <CommonTextField text={"Sort"} font={"General Sans"} mb={5} />
-          <Select
-            style={{ width: "100%" }}
-            value={filter?.sort}
-            options={[
-              { label: "Asc", value: "asc" },
-              { label: "Des", value: "desc" },
-            ]}
-            onChange={(sort) => {
-              setFilter((p) => ({ ...p, sort }));
-            }}
-            placeholder={"Select Item..."}
-            maxTagCount={"responsive"}
-          />
+        <Col>
+          <CommonDropdown
+            open={visible}
+            overlayClassName={"column-visibility-menu"}
+            onOpenChange={() => setVisible(!visible)}
+            items={columnsd.map((col, ind) => ({
+              key: ind.toString(),
+              label: (
+                <CommonCheckBox
+                  label={col["label"]}
+                  checked={col["show"]}
+                  onChange={columnVisiblityHandler(ind)}
+                />
+              ),
+              onClick: columnVisiblityHandler(ind),
+            }))}
+          >
+            <FontAwesomeIcon
+              icon={faGear}
+              onClick={() => setVisible(!visible)}
+            />
+          </CommonDropdown>
         </Col>
       </Row>
       <CommomTable
