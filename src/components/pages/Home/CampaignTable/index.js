@@ -71,11 +71,21 @@ const CampaignTable = ({
       className: d.show ? "" : "hide-column",
     };
 
-    if (d.value === "profit") {
-      data.render = (profit, { color }) => {
-        return <span className={color}>{profit}</span>;
-      };
-    }
+    data["sorter"] = {
+      compare: (a, b) => {
+        const aValue = a?.[d?.value];
+        const bValue = b?.[d?.value];
+
+        if (typeof aValue === "number" && typeof aValue === "number") {
+          return aValue - aValue;
+        }
+
+        return aValue == "-" || bValue == "-" || !aValue || !bValue
+          ? -1
+          : a?.[d?.value]?.localeCompare(b?.[d?.value]);
+      },
+
+    };
 
     if (d.value === "campaign") {
       data.render = (id, { status }) => {
@@ -85,6 +95,12 @@ const CampaignTable = ({
             {id}
           </Space>
         );
+      };
+    }
+
+    if (d.value === "profit") {
+      data.render = (profit, { color }) => {
+        return <span className={color}>{profit}</span>;
       };
     }
 
