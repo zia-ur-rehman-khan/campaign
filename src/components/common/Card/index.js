@@ -21,7 +21,7 @@ const CommonCard = ({ range, data, show, loading }) => {
   return (
     <Space direction="vertical" className="card-main">
       <CommonTextField text={label} className={"grey"} />
-      {!loading ? (
+      {loading ? (
         <Loader size={"small"} className="mt-3" />
       ) : (
         <>
