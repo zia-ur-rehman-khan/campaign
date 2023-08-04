@@ -24,6 +24,7 @@ const CampaignTable = ({
   handleSearch,
   setFilter,
   filter,
+  isFetching,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState({ visible: false, data: {} });
   const [columnsd, setColumns] = useState([
@@ -84,7 +85,6 @@ const CampaignTable = ({
           ? -1
           : a?.[d?.value]?.localeCompare(b?.[d?.value]);
       },
-
     };
 
     if (d.value === "campaign") {
@@ -179,6 +179,7 @@ const CampaignTable = ({
         </Col>
       </Row>
       <CommomTable
+        loading={isFetching}
         dataSource={campaignManupilator(data)}
         columns={columns}
         onRow={(record) => ({

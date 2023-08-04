@@ -28,13 +28,14 @@ const CampaignDetail = ({ data }) => {
 
   const {
     isLoading,
-    error,
+    isFetching,
     data: campaignData,
     refetch,
   } = useGetCampaignTrend(page, range, data?.id, filter);
 
   const {
     isLoading: loadingstatistics,
+    isFetching: loadingstatisticsFetching,
     data: CampaignStatistics,
     refetch: statisticsRefresh,
   } = useGetCampaignTrendStatistics(range, data?.id);
@@ -113,7 +114,11 @@ const CampaignDetail = ({ data }) => {
               xs={{ span: 24 }}
               key={Math.random()}
             >
-              <CommonCard range={range} data={data} />
+              <CommonCard
+                range={range}
+                data={data}
+                loading={loadingstatisticsFetching}
+              />
             </Col>
           )
         )}
@@ -125,6 +130,7 @@ const CampaignDetail = ({ data }) => {
           campaignData={campaignData}
           setFilter={setFilter}
           filter={filter}
+          isFetching={isFetching}
         />
       </div>
     </>

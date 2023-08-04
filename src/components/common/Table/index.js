@@ -1,7 +1,7 @@
 import { Table } from "antd";
 import React from "react";
 
-const CommomTable = ({ dataSource, columns, onRow, pagination }) => {
+const CommomTable = ({ dataSource, columns, onRow, pagination, loading }) => {
   return (
     <div className="common-table-main">
       <Table
@@ -9,6 +9,7 @@ const CommomTable = ({ dataSource, columns, onRow, pagination }) => {
         columns={columns}
         onRow={onRow}
         pagination={pagination}
+        loading={loading}
       />
     </div>
   );

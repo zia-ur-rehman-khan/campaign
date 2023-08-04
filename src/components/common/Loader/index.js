@@ -2,10 +2,10 @@
 import { Spin } from "antd";
 import React from "react";
 
-const Loader = () => {
+const Loader = ({ size = "large" }) => {
   return (
     <div className="d-flex justify-content-center align-items-center ">
-      <Spin size="large" />;
+      <Spin size={size} />;
     </div>
   );
 };

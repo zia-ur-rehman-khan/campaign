@@ -23,12 +23,14 @@ const Home = () => {
 
   const {
     isLoading,
+    isFetching,
     data: campaignData,
     refetch,
   } = useGetCampaignOverview(page, Search, users, providers, range, filter);
 
   const {
     isLoading: loadingstatistics,
+    isFetching: loadingstatisticsFetching,
     data: CampaignStatistics,
     refetch: statisticsRefresh,
   } = useGetCampaignStatistics(users, providers, range);
@@ -129,7 +131,12 @@ const Home = () => {
               xs={{ span: 24 }}
               key={Math.random()}
             >
-              <CommonCard range={range} data={data} show={true} />
+              <CommonCard
+                range={range}
+                data={data}
+                show={true}
+                loading={loadingstatisticsFetching}
+              />
             </Col>
           )
         )}
@@ -143,6 +150,7 @@ const Home = () => {
           handleSearch={handleSearch}
           setFilter={setFilter}
           filter={filter}
+          isFetching={isFetching}
         />
       </div>
     </>

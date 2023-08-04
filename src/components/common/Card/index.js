@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
+import Loader from "../Loader";
 
-const CommonCard = ({ range, data, show }) => {
+const CommonCard = ({ range, data, show, loading }) => {
   const days = () => {
     const momentDate1 = moment(range?.[0]);
     const momentDate2 = moment(range?.[1]);
@@ -20,30 +21,36 @@ const CommonCard = ({ range, data, show }) => {
   return (
     <Space direction="vertical" className="card-main">
       <CommonTextField text={label} className={"grey"} />
-      <CommonHeading level={4} text={amount} />
-      {show &&
-        (per && amount !== "-" ? (
-          <Space>
-            <CommonTextField text={per} className={color} />
+      {loading ? (
+        <Loader size={"small"} />
+      ) : (
+        <>
+          <CommonHeading level={4} text={amount} />
+          {show &&
+            (per && amount !== "-" ? (
+              <Space>
+                <CommonTextField text={per} className={color} />
 
-            <FontAwesomeIcon
-              icon={color === "green" ? faArrowUp : faArrowDown}
-              className={color}
-            />
+                <FontAwesomeIcon
+                  icon={color === "green" ? faArrowUp : faArrowDown}
+                  className={color}
+                />
 
-            <CommonTextField
-              text={
-                days() === 1
-                  ? "then the day before"
-                  : `then ${days()} days before`
-              }
-              topClass={"small"}
-              className={"grey"}
-            />
-          </Space>
-        ) : (
-          ""
-        ))}
+                <CommonTextField
+                  text={
+                    days() === 1
+                      ? "then the day before"
+                      : `then ${days()} days before`
+                  }
+                  topClass={"small"}
+                  className={"grey"}
+                />
+              </Space>
+            ) : (
+              ""
+            ))}
+        </>
+      )}
     </Space>
   );
 };
