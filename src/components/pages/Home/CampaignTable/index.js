@@ -78,10 +78,10 @@ const CampaignTable = ({
     }
 
     if (d.value === "campaign") {
-      data.render = (id, { color }) => {
+      data.render = (id, { status }) => {
         return (
           <Space>
-            <div className={`round background-${color}`}></div>
+            <div className={`round background-${status}`}></div>
             {id}
           </Space>
         );

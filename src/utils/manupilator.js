@@ -1,6 +1,10 @@
 import { formatNumWithPrecision } from "./helper";
 
 export function campaignManupilator(list = []) {
+  console.log(
+    "🚀 ~ file: manupilator.js:4 ~ campaignManupilator ~ list:",
+    list
+  );
   try {
     if (list.length === 0) {
       return [];
@@ -10,6 +14,12 @@ export function campaignManupilator(list = []) {
     for (const campaign of list) {
       const payload = {};
       payload.key = Math.random();
+      payload.status =
+        campaign.status === "paused"
+          ? "red"
+          : campaign.status === "active"
+          ? "green"
+          : "gray";
       payload.id = campaign?.id ?? "-";
       payload.day = campaign?.day ?? "-";
       payload.campaign = campaign?.name === "" ? "-" : campaign?.name;
