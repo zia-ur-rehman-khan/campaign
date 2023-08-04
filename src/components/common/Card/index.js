@@ -11,10 +11,10 @@ const CommonCard = ({ range, data, show }) => {
   const days = () => {
     const momentDate1 = moment(range?.[0]);
     const momentDate2 = moment(range?.[1]);
-    return momentDate2.diff(momentDate1, "days");
+    return momentDate2.diff(momentDate1, "days") + 1;
   };
 
-  console.log(range, "range");
+  console.log(days(), "days");
 
   const { amount, per, color, label } = data;
   return (
@@ -22,7 +22,7 @@ const CommonCard = ({ range, data, show }) => {
       <CommonTextField text={label} className={"grey"} />
       <CommonHeading level={4} text={amount} />
       {show &&
-        (per ? (
+        (per && amount !== "-" ? (
           <Space>
             <CommonTextField text={per} className={color} />
 
@@ -33,9 +33,7 @@ const CommonCard = ({ range, data, show }) => {
 
             <CommonTextField
               text={
-                days() === 0
-                  ? "today"
-                  : days() === 1
+                days() === 1
                   ? "then the day before"
                   : `then ${days()} days before`
               }
