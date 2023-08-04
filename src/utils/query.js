@@ -6,6 +6,7 @@ export const Key = {
   users: "users",
   CampaignTrend: "CampaignTrend",
   CampaignStatistics: "CampaignStatistics",
+  CampaignTrendStatistics: "CampaignTrendStatistics",
 };
 
 export const useGetCampaignOverview = (
@@ -123,6 +124,27 @@ export const useGetCampaignStatistics = (users, providers, range) => {
       axiosRequest(
         "get",
         `api/v1/campaigns/statistics?${params.toString()}`
+      ).then((res) => res),
+  });
+};
+
+export const useGetCampaignTrendStatistics = (range, id) => {
+  const params = new URLSearchParams();
+
+  if (range?.length > 0) {
+    let sinceFormat = range[0].format("YYYY-MM-DD");
+    let sinceuntil = range[1].format("YYYY-MM-DD");
+
+    params.append("date_since", sinceFormat);
+    params.append("date_until", sinceuntil);
+  }
+
+  return useQuery({
+    queryKey: [Key.CampaignTrendStatistics],
+    queryFn: () =>
+      axiosRequest(
+        "get",
+        `api/v1/campaigns/${id}/statistics?${params.toString()}`
       ).then((res) => res),
   });
 };

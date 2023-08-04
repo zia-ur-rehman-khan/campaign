@@ -13,6 +13,7 @@ import {
   Key,
   useGetCampaignStatistics,
   useGetCampaignTrend,
+  useGetCampaignTrendStatistics,
 } from "utils/query";
 import { statisticsdataManipulatorObject } from "utils/manupilator";
 import moment from "moment";
@@ -36,12 +37,7 @@ const CampaignDetail = ({ data }) => {
     isLoading: loadingstatistics,
     data: CampaignStatistics,
     refetch: statisticsRefresh,
-  } = useGetCampaignStatistics("", "", range);
-
-  console.log(
-    "🚀 ~ file: index.js:23 ~ Home ~ campaigntrend:",
-    CampaignStatistics
-  );
+  } = useGetCampaignTrendStatistics(range, data?.id);
 
   useEffect(() => {
     refetch();
