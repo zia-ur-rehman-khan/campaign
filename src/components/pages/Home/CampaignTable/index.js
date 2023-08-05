@@ -18,6 +18,9 @@ import { SORT_BY } from "utils/constant";
 import CommonDropdown from "components/common/CommonDropdown";
 import { Checkbox } from "antd";
 import CommonCheckBox from "components/common/Fields/CommonCheckBox";
+import { Popover } from "antd";
+import { Tooltip } from "antd";
+import moment from "moment";
 
 const CampaignTable = ({
   show,
@@ -43,10 +46,23 @@ const CampaignTable = ({
       show: true,
       sortBy: "results",
     },
+    {
+      label: "Impressions",
+      value: "impressions",
+      show: false,
+      sortBy: "impressions",
+    },
     { label: "CPR", value: "cpr", show: true, sortBy: "cost_per_result" },
     { label: "CVR", value: "cvr", show: true, sortBy: "conversion_rate" },
     { label: "RPC", value: "rpc", show: true, sortBy: "revenue_per_click" },
+    { label: "CTR", value: "ctr", show: false, sortBy: "click_through_rate" },
     { label: "BID", value: "bid", show: true, sortBy: "" },
+    {
+      label: "Time",
+      value: "time",
+      show: false,
+      sortBy: "created_time",
+    },
   ]);
   const cache = useQueryClient();
 
@@ -102,6 +118,16 @@ const CampaignTable = ({
     if (d.value === "profit") {
       data.render = (profit, { color }) => {
         return <span className={color}>{profit}</span>;
+      };
+    }
+
+    if (d.value === "time") {
+      data.render = (time) => {
+        return (
+          <Tooltip title={moment(time).format("MMM DD, yyyy, h:mm A")}>
+            <span>{moment(time).format("MMM DD, yyyy")}</span>
+          </Tooltip>
+        );
       };
     }
 

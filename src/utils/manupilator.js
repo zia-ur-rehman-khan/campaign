@@ -1,3 +1,4 @@
+import moment from "moment";
 import { formatNumWithPrecision } from "./helper";
 
 export function campaignManupilator(list = []) {
@@ -37,6 +38,9 @@ export function campaignManupilator(list = []) {
         ? "-"
         : `${campaign?.return_on_invest}%`;
       payload.conversions = !campaign?.results ? "-" : campaign?.results;
+      payload.impressions = !campaign?.impressions
+        ? "-"
+        : campaign?.impressions;
       payload.cpr = !campaign?.cost_per_result
         ? "-"
         : `$${campaign?.cost_per_result}`;
@@ -46,7 +50,12 @@ export function campaignManupilator(list = []) {
       payload.rpc = !campaign?.revenue_per_click
         ? "-"
         : `$${campaign?.revenue_per_click}`;
+      payload.ctr = !campaign?.click_through_rate
+        ? "-"
+        : `${campaign?.click_through_rate}%`;
       payload.bid = "-";
+      payload.time = !campaign?.created_time ? "-" : campaign?.created_time;
+
       payload.color = campaign?.profit < 0 ? "red" : "green";
 
       payload && campaignList.push(payload);
