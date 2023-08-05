@@ -141,12 +141,7 @@ const CampaignTable = ({
 
   return (
     <div>
-      <Row
-        className="mb-3"
-        gutter={[15]}
-        align={"middle"}
-        justify="space-between"
-      >
+      <Row className="mb-3" align={"middle"}>
         <Col span={23}>
           {show && (
             <div>
@@ -158,7 +153,10 @@ const CampaignTable = ({
             </div>
           )}
         </Col>
-        <Col>
+        <Col
+          span={1}
+          className="d-flex align-items-center justify-content-center"
+        >
           <CommonDropdown
             open={visible}
             overlayClassName={"column-visibility-menu"}
