@@ -131,4 +131,4 @@ export const SORT_BY = [
   },
 ];
 
-export const DATE_OPTIONS = ["Today", "Yesterday", "Last month"];
+export const DATE_OPTIONS = ["Today", "Yesterday", "Last 7 days"];

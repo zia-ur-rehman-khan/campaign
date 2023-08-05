@@ -82,12 +82,12 @@ const Home = () => {
         const today = moment();
         const yesterday = today?.subtract(1, "days");
         setRange([yesterday, yesterday]);
-      } else if (dateString === "Last month") {
+      } else if (dateString === "Last 7 days") {
         const today = moment();
-        const lastMonthDate = today.subtract(1, "months");
-        const tomorrow = lastMonthDate.add(1, "days");
+        const lastDate = today.subtract(7, "days");
+
         const formatToday = moment();
-        setRange([tomorrow, formatToday]);
+        setRange([lastDate, formatToday]);
       }
     } else {
       console.log(date, "date");

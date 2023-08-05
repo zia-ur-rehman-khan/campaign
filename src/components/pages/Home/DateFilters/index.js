@@ -19,15 +19,14 @@ const DateFilters = ({ handleRange, range }) => {
       const today = moment();
       const yesterday = today.subtract(1, "days");
       return range[0]?.isSame(yesterday, "day") && "Yesterday";
-    } else if (dateString === "Last month") {
+    } else if (dateString === "Last 7 days") {
       const today = moment();
-      const lastMonthDate = today.subtract(1, "months");
-      const tomorrow = lastMonthDate.add(1, "days");
+      const lastDate = today.subtract(7, "days");
 
       return (
-        range[0]?.isSame(tomorrow, "day") &&
+        range[0]?.isSame(lastDate, "day") &&
         range[1]?.isSame(moment(), "day") &&
-        "Last month"
+        "Last 7 days"
       );
     }
   };
