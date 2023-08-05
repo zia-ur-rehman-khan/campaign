@@ -26,21 +26,27 @@ const CampaignTable = ({
   page,
   handleSearch,
   isFetching,
+  setFilter,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState({ visible: false, data: {} });
   const [visible, setVisible] = useState(false);
 
   const [columnsd, setColumns] = useState([
-    { label: "Spend", value: "spend", show: true },
-    { label: "Clicks", value: "clicks", show: true },
-    { label: "Revenue", value: "revenue", show: true },
-    { label: "Profit", value: "profit", show: true },
-    { label: "ROI", value: "roi", show: true },
-    { label: "Conversions", value: "conversions", show: true },
-    { label: "CPR", value: "cpr", show: true },
-    { label: "CVR", value: "cvr", show: true },
-    { label: "RPC", value: "rpc", show: true },
-    { label: "BID", value: "bid", show: true },
+    { label: "Spend", value: "spend", show: true, sortBy: "spend" },
+    { label: "Clicks", value: "clicks", show: true, sortBy: "link_clicks" },
+    { label: "Revenue", value: "revenue", show: true, sortBy: "revenue" },
+    { label: "Profit", value: "profit", show: true, sortBy: "profit" },
+    { label: "ROI", value: "roi", show: true, sortBy: "return_on_invest" },
+    {
+      label: "Conversions",
+      value: "conversions",
+      show: true,
+      sortBy: "results",
+    },
+    { label: "CPR", value: "cpr", show: true, sortBy: "cost_per_result" },
+    { label: "CVR", value: "cvr", show: true, sortBy: "conversion_rate" },
+    { label: "RPC", value: "rpc", show: true, sortBy: "revenue_per_click" },
+    { label: "BID", value: "bid", show: true, sortBy: "" },
   ]);
   const cache = useQueryClient();
 
@@ -50,13 +56,13 @@ const CampaignTable = ({
     if (show) {
       !columnsd.some((i) => i.value === "campaign") &&
         setColumns((pre) => [
-          { label: "Campaign", value: "campaign", show: true },
+          { label: "Campaign", value: "campaign", show: true, sortBy: "name" },
           ...pre,
         ]);
     } else {
       !columnsd.some((i) => i.value === "day") &&
         setColumns((pre) => [
-          { label: "Day", value: "day", show: true },
+          { label: "Day", value: "day", show: true, sortBy: "day" },
           ...pre,
         ]);
     }
@@ -78,23 +84,8 @@ const CampaignTable = ({
       dataIndex: d.value,
       key: d.value,
       className: d.show ? "" : "hide-column",
-      sortDirections: ["ascend", "descend"],
-    };
-
-    data["sorter"] = {
-      compare: (a, b) => {
-        const aValue = a?.[d?.value];
-        const bValue = b?.[d?.value];
-
-        if (typeof aValue === "number" && typeof bValue === "number") {
-          return aValue - bValue;
-        }
-
-        return aValue == "-" || bValue == "-" || !aValue || !bValue
-          ? -1
-          : a?.[d?.value]?.localeCompare(b?.[d?.value]);
-      },
-      multiple: ind + 1,
+      sorter: true,
+      sortBy: d.sortBy,
     };
 
     if (d.value === "campaign") {
@@ -128,6 +119,24 @@ const CampaignTable = ({
           : item
       )
     );
+  };
+
+  const handleTableChange = (pagination, filters, sorter) => {
+    // 'sorter' contains the sorting information
+    console.log(sorter, "sorter");
+
+    if (sorter && sorter.field && sorter.order) {
+      const field = sorter.column.sortBy;
+      let order;
+      if (sorter.order === "descend") {
+        order = "desc";
+      } else {
+        order = "asc";
+      }
+      setFilter({ sort: order, sortBy: field });
+    } else {
+      setFilter({ sort: null, sortBy: null });
+    }
   };
 
   return (
@@ -174,6 +183,7 @@ const CampaignTable = ({
         </Col>
       </Row>
       <CommomTable
+        onChange={handleTableChange}
         loading={isFetching}
         dataSource={campaignManupilator(data)}
         columns={columns}

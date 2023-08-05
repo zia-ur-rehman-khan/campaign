@@ -81,6 +81,11 @@ export const useGetCampaignTrend = (page, range, id, filter) => {
     params.append("date_since", sinceFormat);
     params.append("date_until", sinceuntil);
   }
+
+  if (filter?.sortBy) {
+    params.append("sort_by", filter?.sortBy);
+  }
+
   if (filter?.sort) {
     params.append("sort_order", filter?.sort);
   }

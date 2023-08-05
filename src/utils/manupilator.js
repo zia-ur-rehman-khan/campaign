@@ -11,8 +11,10 @@ export function campaignManupilator(list = []) {
     }
 
     const campaignList = [];
+
     for (const campaign of list) {
       const payload = {};
+
       payload.key = Math.random();
       payload.status =
         campaign.status === "paused"
