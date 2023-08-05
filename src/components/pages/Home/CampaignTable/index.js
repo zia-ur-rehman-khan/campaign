@@ -176,6 +176,7 @@ const CampaignTable = ({
             }))}
           >
             <FontAwesomeIcon
+              className="c-pointer"
               icon={faGear}
               onClick={() => setVisible(!visible)}
             />

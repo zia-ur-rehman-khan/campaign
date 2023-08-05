@@ -39,8 +39,8 @@ const CommonCard = ({ range, data, show, loading }) => {
                 <CommonTextField
                   text={
                     days() === 1
-                      ? "then the day before"
-                      : `then ${days()} days before`
+                      ? "than the day before"
+                      : `than ${days()} days before`
                   }
                   topClass={"small"}
                   className={"grey"}

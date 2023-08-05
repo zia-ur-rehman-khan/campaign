@@ -123,7 +123,7 @@ const CampaignDetail = ({ data }) => {
           )
         )}
       </Row>
-      <div className="mt-4">
+      <div>
         <CampaignTable
           handlePaginationChange={handlePaginationChange}
           page={page}
