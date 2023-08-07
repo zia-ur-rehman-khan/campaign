@@ -131,4 +131,5 @@ export const SORT_BY = [
   },
 ];
 
-export const DATE_OPTIONS = ["Today", "Yesterday", "Last 7 days"];
+export const DATE_OPTIONS_overview = ["Today", "Yesterday", "Last month"];
+export const DATE_OPTIONS_trend = ["Today", "Yesterday", "Last 7 days"];

@@ -7,7 +7,7 @@ import CommonTable from "../CampaignTable";
 import CommonTextField from "components/common/TextField";
 import CommonHeading from "components/common/Heading";
 import CampaignTable from "../CampaignTable";
-import { CARD_LIST } from "utils/constant";
+import { CARD_LIST, DATE_OPTIONS_trend } from "utils/constant";
 import Loader from "components/common/Loader";
 import {
   Key,
@@ -75,7 +75,7 @@ const CampaignDetail = ({ data }) => {
         setRange([yesterday, yesterday]);
       } else if (dateString === "Last 7 days") {
         const today = moment();
-        const lastDate = today.subtract(7, "days");
+        const lastDate = today.subtract(6, "days");
 
         const formatToday = moment();
         setRange([lastDate, formatToday]);
@@ -103,7 +103,11 @@ const CampaignDetail = ({ data }) => {
           sm={{ span: 24 }}
           xs={{ span: 24 }}
         >
-          <DateFilters handleRange={handleRange} range={range} />
+          <DateFilters
+            handleRange={handleRange}
+            range={range}
+            options={DATE_OPTIONS_trend}
+          />
         </Col>
       </Row>
       <Row className="mt-5">

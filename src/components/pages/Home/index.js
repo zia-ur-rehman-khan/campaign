@@ -4,7 +4,7 @@ import SelectFilters from "./SelectFilters";
 import { Col, Row } from "antd";
 import CommonCard from "components/common/Card";
 import CampaignTable from "./CampaignTable";
-import { CARD_LIST } from "utils/constant";
+import { CARD_LIST, DATE_OPTIONS_overview } from "utils/constant";
 import { useGetCampaignOverview, useGetCampaignStatistics } from "utils/query";
 import Loader from "components/common/Loader";
 import { statisticsdataManipulatorObject } from "utils/manupilator";
@@ -86,12 +86,12 @@ const Home = () => {
         const today = moment();
         const yesterday = today?.subtract(1, "days");
         setRange([yesterday, yesterday]);
-      } else if (dateString === "Last 7 days") {
+      } else if (dateString === "Last month") {
         const today = moment();
-        const lastDate = today.subtract(7, "days");
-
+        const lastMonthDate = today.subtract(1, "months");
+        const tomorrow = lastMonthDate.add(1, "days");
         const formatToday = moment();
-        setRange([lastDate, formatToday]);
+        setRange([tomorrow, formatToday]);
       }
     } else {
       console.log(date, "date");
@@ -121,7 +121,11 @@ const Home = () => {
           sm={{ span: 24 }}
           xs={{ span: 24 }}
         >
-          <DateFilters handleRange={handleRange} range={range} />
+          <DateFilters
+            handleRange={handleRange}
+            range={range}
+            options={DATE_OPTIONS_overview}
+          />
         </Col>
       </Row>
       <Row className="mt-5">
@@ -155,7 +159,7 @@ const Home = () => {
           setFilter={setFilter}
           filter={filter}
           isFetching={isFetching}
-          setPage={setPage}
+          setO
         />
       </div>
     </>
