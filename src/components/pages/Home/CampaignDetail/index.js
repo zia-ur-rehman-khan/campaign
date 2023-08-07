@@ -62,6 +62,8 @@ const CampaignDetail = ({ data }) => {
   };
 
   const handleRange = (date, dateString) => {
+    if (page !== 1) setPage(1);
+
     if (date === "date") {
       if (dateString === "Today") {
         const today = moment();
@@ -71,18 +73,19 @@ const CampaignDetail = ({ data }) => {
         const today = moment();
         const yesterday = today?.subtract(1, "days");
         setRange([yesterday, yesterday]);
-      } else if (dateString === "Last month") {
+      } else if (dateString === "Last 7 days") {
         const today = moment();
-        const lastMonthDate = today.subtract(1, "months");
-        const tomorrow = lastMonthDate.add(1, "days");
+        const lastDate = today.subtract(7, "days");
+
         const formatToday = moment();
-        setRange([tomorrow, formatToday]);
+        setRange([lastDate, formatToday]);
       }
     } else {
       console.log(date, "date");
       setRange(date);
     }
   };
+
   return (
     <>
       <Row gutter={[0, 20]}>

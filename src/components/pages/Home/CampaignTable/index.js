@@ -30,6 +30,7 @@ const CampaignTable = ({
   handleSearch,
   isFetching,
   setFilter,
+  setPage,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState({ visible: false, data: {} });
   const [visible, setVisible] = useState(false);
@@ -149,7 +150,7 @@ const CampaignTable = ({
 
   const handleTableChange = (pagination, filters, sorter) => {
     // 'sorter' contains the sorting information
-    console.log(sorter, "sorter");
+    if (page !== 1) setPage(1);
 
     if (sorter && sorter.field && sorter.order) {
       const field = sorter.column.sortBy;

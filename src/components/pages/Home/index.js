@@ -60,19 +60,23 @@ const Home = () => {
   };
 
   const handleSearch = (d) => {
+    if (page !== 1) setPage(1);
     setSearch(d);
   };
 
   const handleUsers = (d) => {
+    if (page !== 1) setPage(1);
     setUsers(d);
   };
 
   const handleProviders = (d) => {
-    console.log(d, "d");
+    if (page !== 1) setPage(1);
     setProviders(d);
   };
 
   const handleRange = (date, dateString) => {
+    if (page !== 1) setPage(1);
+
     if (date === "date") {
       if (dateString === "Today") {
         const today = moment();
@@ -151,6 +155,7 @@ const Home = () => {
           setFilter={setFilter}
           filter={filter}
           isFetching={isFetching}
+          setPage={setPage}
         />
       </div>
     </>
