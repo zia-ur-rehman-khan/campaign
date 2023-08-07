@@ -59,7 +59,7 @@ const CampaignTable = ({
     { label: "CTR", value: "ctr", show: false, sortBy: "click_through_rate" },
     { label: "BID", value: "bid", show: true, sortBy: "" },
     {
-      label: "Time",
+      label: "Date Created",
       value: "time",
       show: false,
       sortBy: "created_time",
