@@ -26,35 +26,50 @@ export function campaignManupilator(list = []) {
       payload.id = campaign?.id ?? "-";
       payload.day = campaign?.day ?? "-";
       payload.campaign = campaign?.name === "" ? "-" : campaign?.name;
-      payload.spend = !campaign?.spend ? "-" : `$${campaign?.spend}`;
-      payload.clicks = !campaign?.link_clicks ? "-" : campaign?.link_clicks;
-      payload.revenue = !campaign?.revenue ? "-" : `$${campaign?.revenue}`;
-      payload.profit = !campaign?.profit
-        ? "-"
-        : campaign?.profit < 0
-        ? `$${Math.abs(campaign?.profit)}`
-        : `$${campaign?.profit}`;
-      payload.roi = !campaign?.return_on_invest
-        ? "-"
-        : `${campaign?.return_on_invest}%`;
-      payload.conversions = !campaign?.results ? "-" : campaign?.results;
-      payload.impressions = !campaign?.impressions
-        ? "-"
-        : campaign?.impressions;
-      payload.cpr = !campaign?.cost_per_result
-        ? "-"
-        : `$${campaign?.cost_per_result}`;
-      payload.cvr = !campaign?.conversion_rate
-        ? "-"
-        : `${campaign?.conversion_rate}%`;
-      payload.rpc = !campaign?.revenue_per_click
-        ? "-"
-        : `$${campaign?.revenue_per_click}`;
-      payload.ctr = !campaign?.click_through_rate
-        ? "-"
-        : `${campaign?.click_through_rate}%`;
+      payload.spend = campaign?.spend === null ? "-" : `$${campaign?.spend}`;
+      payload.clicks =
+        campaign?.link_clicks === null ? "-" : campaign?.link_clicks;
+      payload.revenue =
+        campaign?.revenue === null ? "-" : `$${campaign?.revenue}`;
+      payload.profit =
+        campaign?.profit === null
+          ? "-"
+          : campaign?.profit < 0
+          ? `$${Math.abs(campaign?.profit)}`
+          : `$${campaign?.profit}`;
+      payload.roi =
+        campaign?.return_on_invest === null
+          ? "-"
+          : `${campaign?.return_on_invest}%`;
+      payload.conversions =
+        campaign?.results === null ? "-" : campaign?.results;
+      payload.impressions =
+        campaign?.impressions === null ? "-" : campaign?.impressions;
+      payload.cpr =
+        campaign?.cost_per_result === null
+          ? "-"
+          : `$${campaign?.cost_per_result}`;
+      payload.cvr =
+        campaign?.conversion_rate === null
+          ? "-"
+          : `${campaign?.conversion_rate}%`;
+      payload.rpc =
+        campaign?.revenue_per_click === null
+          ? "-"
+          : `$${campaign?.revenue_per_click}`;
+      payload.ctr =
+        campaign?.click_through_rate === null
+          ? "-"
+          : `${campaign?.click_through_rate}%`;
       payload.bid = "-";
-      payload.time = !campaign?.created_time ? "-" : campaign?.created_time;
+      payload.time =
+        campaign?.created_time === null
+          ? "-"
+          : moment(campaign?.created_time).format("MMM DD, yyyy");
+      payload.timeTooltip =
+        campaign?.created_time === null
+          ? "-"
+          : moment(campaign?.created_time).format("MMM DD, yyyy, h:mm A");
 
       payload.color = campaign?.profit < 0 ? "red" : "green";
 
@@ -98,7 +113,7 @@ export function statisticsdataManipulatorObject(campaign = {}) {
     const payload = {};
 
     payload.spend = {
-      amount: !campaign?.spend ? "-" : `$${campaign?.spend}`,
+      amount: campaign?.spend === null ? "-" : `$${campaign?.spend}`,
       per:
         campaign?.spend === null || campaign?.spend_before === null
           ? ""
@@ -111,7 +126,7 @@ export function statisticsdataManipulatorObject(campaign = {}) {
     };
 
     payload.revenue = {
-      amount: !campaign?.revenue ? "-" : `$${campaign?.revenue}`,
+      amount: campaign?.revenue === null ? "-" : `$${campaign?.revenue}`,
       per:
         campaign?.revenue === null || campaign?.revenue_before === null
           ? ""
@@ -127,11 +142,12 @@ export function statisticsdataManipulatorObject(campaign = {}) {
     };
 
     payload.profit = {
-      amount: !campaign?.profit
-        ? "-"
-        : campaign?.profit < 0
-        ? `$${Math.abs(campaign?.profit)}`
-        : `$${campaign?.profit}`,
+      amount:
+        campaign?.profit === null
+          ? "-"
+          : campaign?.profit < 0
+          ? `$${Math.abs(campaign?.profit)}`
+          : `$${campaign?.profit}`,
       per:
         campaign?.profit === null || campaign?.profit_before === null
           ? ""
@@ -147,9 +163,10 @@ export function statisticsdataManipulatorObject(campaign = {}) {
     };
 
     payload.roi = {
-      amount: !campaign?.return_on_invest
-        ? "-"
-        : `${campaign?.return_on_invest}%`,
+      amount:
+        campaign?.return_on_invest === null
+          ? "-"
+          : `${campaign?.return_on_invest}%`,
       per:
         campaign?.return_on_invest === null ||
         campaign?.return_on_invest_before === null
@@ -171,9 +188,10 @@ export function statisticsdataManipulatorObject(campaign = {}) {
     };
 
     payload.rpc = {
-      amount: !campaign?.revenue_per_click
-        ? "-"
-        : `$${campaign?.revenue_per_click}`,
+      amount:
+        campaign?.revenue_per_click === null
+          ? "-"
+          : `$${campaign?.revenue_per_click}`,
       per:
         campaign?.revenue_per_click === null ||
         campaign?.revenue_per_click_before === null
@@ -196,9 +214,10 @@ export function statisticsdataManipulatorObject(campaign = {}) {
     };
 
     payload.ctr = {
-      amount: !campaign?.click_through_rate
-        ? "-"
-        : `${campaign?.click_through_rate}%`,
+      amount:
+        campaign?.click_through_rate === null
+          ? "-"
+          : `${campaign?.click_through_rate}%`,
       per:
         campaign?.click_through_rate === null ||
         campaign?.click_through_rate_before === null

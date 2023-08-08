@@ -123,10 +123,10 @@ const CampaignTable = ({
     }
 
     if (d.value === "time") {
-      data.render = (time) => {
+      data.render = (time, { timeTooltip }) => {
         return (
-          <Tooltip title={moment(time).format("MMM DD, yyyy, h:mm A")}>
-            <span>{moment(time).format("MMM DD, yyyy")}</span>
+          <Tooltip title={timeTooltip}>
+            <span>{time}</span>
           </Tooltip>
         );
       };
