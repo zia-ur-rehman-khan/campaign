@@ -26,41 +26,42 @@ export function campaignManupilator(list = []) {
       payload.id = campaign?.id ?? "-";
       payload.day = campaign?.day ?? "-";
       payload.campaign = campaign?.name === "" ? "-" : campaign?.name;
-      payload.spend = campaign?.spend === null ? "-" : `$${campaign?.spend}`;
+      payload.spend =
+        campaign?.spend === null ? "-" : `$${Math.abs(campaign?.spend)}`;
       payload.clicks =
-        campaign?.link_clicks === null ? "-" : campaign?.link_clicks;
+        campaign?.link_clicks === null ? "-" : Math.abs(campaign?.link_clicks);
       payload.revenue =
-        campaign?.revenue === null ? "-" : `$${campaign?.revenue}`;
+        campaign?.revenue === null ? "-" : `$${Math.abs(campaign?.revenue)}`;
       payload.profit =
         campaign?.profit === null
           ? "-"
           : campaign?.profit < 0
           ? `$${Math.abs(campaign?.profit)}`
-          : `$${campaign?.profit}`;
+          : `$${Math.abs(campaign?.profit)}`;
       payload.roi =
         campaign?.return_on_invest === null
           ? "-"
-          : `${campaign?.return_on_invest}%`;
+          : `${Math.abs(campaign?.return_on_invest)}%`;
       payload.conversions =
-        campaign?.results === null ? "-" : campaign?.results;
+        campaign?.results === null ? "-" : Math.abs(campaign?.results);
       payload.impressions =
-        campaign?.impressions === null ? "-" : campaign?.impressions;
+        campaign?.impressions === null ? "-" : Math.abs(campaign?.impressions);
       payload.cpr =
         campaign?.cost_per_result === null
           ? "-"
-          : `$${campaign?.cost_per_result}`;
+          : `$${Math.abs(campaign?.cost_per_result)}`;
       payload.cvr =
         campaign?.conversion_rate === null
           ? "-"
-          : `${campaign?.conversion_rate}%`;
+          : `${Math.abs(campaign?.conversion_rate)}%`;
       payload.rpc =
         campaign?.revenue_per_click === null
           ? "-"
-          : `$${campaign?.revenue_per_click}`;
+          : `$${Math.abs(campaign?.revenue_per_click)}`;
       payload.ctr =
         campaign?.click_through_rate === null
           ? "-"
-          : `${campaign?.click_through_rate}%`;
+          : `${Math.abs(campaign?.click_through_rate)}%`;
       payload.bid = "-";
       payload.time =
         campaign?.created_time === null
@@ -113,7 +114,7 @@ export function statisticsdataManipulatorObject(campaign = {}) {
     const payload = {};
 
     payload.spend = {
-      amount: campaign?.spend === null ? "-" : `$${campaign?.spend}`,
+      amount: campaign?.spend === null ? "-" : `$${Math.abs(campaign?.spend)}`,
       per:
         campaign?.spend === null || campaign?.spend_before === null
           ? ""
@@ -126,7 +127,8 @@ export function statisticsdataManipulatorObject(campaign = {}) {
     };
 
     payload.revenue = {
-      amount: campaign?.revenue === null ? "-" : `$${campaign?.revenue}`,
+      amount:
+        campaign?.revenue === null ? "-" : `$${Math.abs(campaign?.revenue)}`,
       per:
         campaign?.revenue === null || campaign?.revenue_before === null
           ? ""
@@ -147,7 +149,7 @@ export function statisticsdataManipulatorObject(campaign = {}) {
           ? "-"
           : campaign?.profit < 0
           ? `$${Math.abs(campaign?.profit)}`
-          : `$${campaign?.profit}`,
+          : `$${Math.abs(campaign?.profit)}`,
       per:
         campaign?.profit === null || campaign?.profit_before === null
           ? ""
@@ -166,7 +168,7 @@ export function statisticsdataManipulatorObject(campaign = {}) {
       amount:
         campaign?.return_on_invest === null
           ? "-"
-          : `${campaign?.return_on_invest}%`,
+          : `${Math.abs(campaign?.return_on_invest)}%`,
       per:
         campaign?.return_on_invest === null ||
         campaign?.return_on_invest_before === null
@@ -191,7 +193,7 @@ export function statisticsdataManipulatorObject(campaign = {}) {
       amount:
         campaign?.revenue_per_click === null
           ? "-"
-          : `$${campaign?.revenue_per_click}`,
+          : `$${Math.abs(campaign?.revenue_per_click)}`,
       per:
         campaign?.revenue_per_click === null ||
         campaign?.revenue_per_click_before === null
@@ -217,7 +219,7 @@ export function statisticsdataManipulatorObject(campaign = {}) {
       amount:
         campaign?.click_through_rate === null
           ? "-"
-          : `${campaign?.click_through_rate}%`,
+          : `${Math.abs(campaign?.click_through_rate)}%`,
       per:
         campaign?.click_through_rate === null ||
         campaign?.click_through_rate_before === null
