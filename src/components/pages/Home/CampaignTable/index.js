@@ -57,12 +57,6 @@ const CampaignTable = ({
     { label: "RPC", value: "rpc", show: true, sortBy: "revenue_per_click" },
     { label: "CTR", value: "ctr", show: false, sortBy: "click_through_rate" },
     { label: "BID", value: "bid", show: true, sortBy: "" },
-    {
-      label: "Date Created",
-      value: "time",
-      show: false,
-      sortBy: "created_time",
-    },
   ]);
   const cache = useQueryClient();
 
@@ -74,6 +68,17 @@ const CampaignTable = ({
         setColumns((pre) => [
           { label: "Campaign", value: "campaign", show: true, sortBy: "name" },
           ...pre,
+        ]);
+
+      !columnsd.some((i) => i.value === "time") &&
+        setColumns((pre) => [
+          ...pre,
+          {
+            label: "Date Created",
+            value: "time",
+            show: false,
+            sortBy: "created_time",
+          },
         ]);
     } else {
       !columnsd.some((i) => i.value === "day") &&
