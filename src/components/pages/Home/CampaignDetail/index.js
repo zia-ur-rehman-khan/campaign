@@ -57,6 +57,24 @@ const CampaignDetail = ({ data }) => {
 
   if (isLoading || loadingstatistics) return <Loader />;
 
+  const handleTableChange = (pagination, filters, sorter) => {
+    if (sorter && sorter.field && sorter.order) {
+      const field = sorter.column.sortBy;
+      let order;
+      if (sorter.order === "descend") {
+        order = "desc";
+      } else {
+        order = "asc";
+      }
+
+      setFilter({ sort: order, sortBy: field });
+      if (page !== 1) setPage(1);
+    } else {
+      setFilter({ sort: null, sortBy: null });
+      if (page !== 1) setPage(1);
+    }
+  };
+
   const handlePaginationChange = (page) => {
     setPage(page);
   };
@@ -135,9 +153,8 @@ const CampaignDetail = ({ data }) => {
           handlePaginationChange={handlePaginationChange}
           page={page}
           campaignData={campaignData}
-          setFilter={setFilter}
-          filter={filter}
           isFetching={isFetching}
+          handleTableChange={handleTableChange}
         />
       </div>
     </>

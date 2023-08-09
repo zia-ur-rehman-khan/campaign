@@ -55,6 +55,24 @@ const Home = () => {
 
   if (isLoading || loadingstatistics) return <Loader />;
 
+  const handleTableChange = (pagination, filters, sorter) => {
+    if (sorter && sorter.field && sorter.order) {
+      const field = sorter.column.sortBy;
+      let order;
+      if (sorter.order === "descend") {
+        order = "desc";
+      } else {
+        order = "asc";
+      }
+
+      setFilter({ sort: order, sortBy: field });
+      if (page !== 1) setPage(1);
+    } else {
+      setFilter({ sort: null, sortBy: null });
+      if (page !== 1) setPage(1);
+    }
+  };
+
   const handlePaginationChange = (page) => {
     setPage(page);
   };
@@ -156,10 +174,8 @@ const Home = () => {
           page={page}
           campaignData={campaignData}
           handleSearch={handleSearch}
-          setFilter={setFilter}
-          filter={filter}
           isFetching={isFetching}
-          setO
+          handleTableChange={handleTableChange}
         />
       </div>
     </>

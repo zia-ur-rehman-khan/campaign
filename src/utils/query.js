@@ -100,10 +100,6 @@ export const useGetCampaignTrend = (page, range, id, filter) => {
 };
 
 export const useGetCampaignStatistics = (users, providers, range) => {
-  console.log(
-    "🚀 ~ file: query.js:97 ~ useGetCampaignStatistics ~ range:",
-    range
-  );
   const params = new URLSearchParams();
 
   if (users?.length > 0) {
