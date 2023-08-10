@@ -19,7 +19,7 @@ export const OPTIONS = [
 
 export const SOCIAL_OPTION = [
   {
-    value: "Facebook",
+    value: "facebook",
     label: "Facebook",
     icon: <Image src={fb} width={20} height={20} alt="icon" />,
   },

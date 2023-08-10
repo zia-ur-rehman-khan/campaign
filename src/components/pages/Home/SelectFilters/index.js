@@ -8,7 +8,14 @@ import { selectManupilator } from "utils/manupilator";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-const SelectFilters = ({ handleUsers, users, handleProviders, providers }) => {
+const SelectFilters = ({
+  handleUsers,
+  users,
+  handleProviders,
+  providers,
+  handlePlatforms,
+  Platforms,
+}) => {
   const { data: usersData } = useGetusers();
 
   return (
@@ -16,19 +23,21 @@ const SelectFilters = ({ handleUsers, users, handleProviders, providers }) => {
       <CommonSelect
         options={selectManupilator(usersData)}
         mode="multiple"
-        placeholder="select users"
+        placeholder="Users"
         onChange={handleUsers}
         value={users}
       />
       <CommonSelect
-        mode="multiple"
         options={SOCIAL_OPTION}
-        defaultValue={"Facebook"}
+        mode="multiple"
+        placeholder={"Buying platforms"}
+        onChange={handlePlatforms}
+        value={Platforms}
       />
       <CommonSelect
         options={OPTIONS}
         mode="multiple"
-        placeholder="select providers"
+        placeholder="Feed providers"
         onChange={handleProviders}
         value={providers}
       />

@@ -15,6 +15,7 @@ const Home = () => {
   const [Search, setSearch] = useState("");
   const [users, setUsers] = useState([]);
   const [providers, setProviders] = useState([]);
+  const [Platforms, setPlatforms] = useState([]);
   const [range, setRange] = useState([]);
   const [filter, setFilter] = useState({
     sort: null,
@@ -26,18 +27,26 @@ const Home = () => {
     isFetching,
     data: campaignData,
     refetch,
-  } = useGetCampaignOverview(page, Search, users, providers, range, filter);
+  } = useGetCampaignOverview(
+    page,
+    Search,
+    users,
+    providers,
+    range,
+    filter,
+    Platforms
+  );
 
   const {
     isLoading: loadingstatistics,
     isFetching: loadingstatisticsFetching,
     data: CampaignStatistics,
     refetch: statisticsRefresh,
-  } = useGetCampaignStatistics(users, providers, range);
+  } = useGetCampaignStatistics(users, providers, Platforms, range);
 
   useEffect(() => {
     statisticsRefresh();
-  }, [users, providers, statisticsRefresh, range]);
+  }, [users, providers, statisticsRefresh, Platforms, range]);
 
   useEffect(() => {
     refetch();
@@ -46,6 +55,7 @@ const Home = () => {
     refetch,
     users,
     providers,
+    Platforms,
     range,
     filter["sort"],
     filter["sortBy"],
@@ -92,6 +102,11 @@ const Home = () => {
     setProviders(d);
   };
 
+  const handlePlatforms = (d) => {
+    if (page !== 1) setPage(1);
+    setPlatforms(d);
+  };
+
   const handleRange = (date, dateString) => {
     if (page !== 1) setPage(1);
 
@@ -130,7 +145,9 @@ const Home = () => {
             handleUsers={handleUsers}
             users={users}
             providers={providers}
+            Platforms={Platforms}
             handleProviders={handleProviders}
+            handlePlatforms={handlePlatforms}
           />
         </Col>
         <Col

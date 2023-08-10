@@ -15,7 +15,8 @@ export const useGetCampaignOverview = (
   users,
   providers,
   range,
-  filter
+  filter,
+  Platforms
 ) => {
   const params = new URLSearchParams();
 
@@ -33,6 +34,11 @@ export const useGetCampaignOverview = (
   if (providers?.length > 0) {
     providers.forEach((provider) => {
       params.append("feed_providers", provider);
+    });
+  }
+  if (Platforms?.length > 0) {
+    Platforms.forEach((provider) => {
+      params.append("buying_platforms", provider);
     });
   }
   if (range?.length > 0) {
@@ -99,7 +105,12 @@ export const useGetCampaignTrend = (page, range, id, filter) => {
   });
 };
 
-export const useGetCampaignStatistics = (users, providers, range) => {
+export const useGetCampaignStatistics = (
+  users,
+  providers,
+  Platforms,
+  range
+) => {
   const params = new URLSearchParams();
 
   if (users?.length > 0) {
@@ -110,6 +121,11 @@ export const useGetCampaignStatistics = (users, providers, range) => {
   if (providers?.length > 0) {
     providers.forEach((provider) => {
       params.append("feed_providers", provider);
+    });
+  }
+  if (Platforms?.length > 0) {
+    Platforms.forEach((provider) => {
+      params.append("buying_platforms", provider);
     });
   }
   if (range?.length > 0) {
